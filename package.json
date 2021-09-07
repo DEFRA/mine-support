@@ -39,7 +39,7 @@
   ],
   "license": "OGL-UK-3.0",
   "dependencies": {
-    "@envage/hapi-govuk-question-page": "^0.3.0",
+    "@envage/hapi-govuk-question-page": "^0.4.0",
     "@hapi/catbox-redis": "^6.0.2",
     "@hapi/hapi": "^20.1.0",
     "@hapi/hoek": "^9.1.1",
