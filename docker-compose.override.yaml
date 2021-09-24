@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.8'
 
 # This override file should be used when running this service in isolation
 # to provide dependencies and expose ports for local testing
@@ -14,8 +14,8 @@ services:
       - "3000:3000"
       - "9229:9229"
     volumes:
-      - ./app/:/home/node/app/
-      - ./scripts/:/home/node/scripts/
+      - ./app:/home/node/app
+      - ./scripts:/home/node/scripts
       - ./package.json:/home/node/package.json
 
   redis:
