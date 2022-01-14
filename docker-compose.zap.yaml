@@ -13,9 +13,10 @@ services:
 
   zap-baseline-scan:
     image: owasp/zap2docker-stable:2.11.1
-    command: zap-baseline.py -t http://ffc-demo-web:${PORT:-3000} -c config/zap.conf -r test-output/zap-report.html -a -d -I -T 5
+    command: sh -c "/scripts/wait ffc-demo-web:3000 -- zap-baseline.py -t http://ffc-demo-web:${PORT:-3000} -c config/zap.conf -r test-output/zap-report.html -a -d -I"
     depends_on:
       - ffc-demo-web
     volumes:
       - ./test-output:/zap/wrk/test-output
       - ./zap:/zap/wrk/config
+      - ./scripts:/scripts
