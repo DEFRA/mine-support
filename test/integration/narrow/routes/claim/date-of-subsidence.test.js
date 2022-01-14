@@ -25,7 +25,7 @@ describe('Date of Subsidence test', () => {
     const options = {
       method: 'POST',
       url: '/claim/date-of-subsidence',
-      payload: { dateOfSubsidence__year: '2022', dateOfSubsidence__month: '01', dateOfSubsidence__day: '01' }
+      payload: { dateOfSubsidence__year: '2122', dateOfSubsidence__month: '01', dateOfSubsidence__day: '01' }
     }
 
     const postResponse = await server.inject(options)
