@@ -2,14 +2,14 @@ const joi = require('joi')
 
 const mqSchema = joi.object({
   messageQueue: {
-    host: joi.string(),
+    host: joi.string().default('localhost'),
     useCredentialChain: joi.bool().default(false),
     type: joi.string(),
     appInsights: joi.object()
   },
   claimQueue: {
-    name: joi.string(),
-    address: joi.string(),
+    name: joi.string().default('ffc-demo-web-claim'),
+    address: joi.string().default('claim'),
     username: joi.string(),
     password: joi.string()
   }
