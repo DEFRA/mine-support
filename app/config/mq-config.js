@@ -39,6 +39,10 @@ if (mqResult.error) {
   throw new Error(`The message queue config is invalid. ${mqResult.error.message}`)
 }
 
+if (mqConfig.claimQueue.suffix) {
+  mqConfig.claimQueue.address = `${mqConfig.claimQueue.address}${mqConfig.claimQueue.suffix}`
+}
+
 const claimQueueConfig = { ...mqResult.value.messageQueue, ...mqResult.value.claimQueue }
 
 console.log(claimQueueConfig)
