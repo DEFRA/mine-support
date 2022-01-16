@@ -39,7 +39,7 @@
   ],
   "license": "OGL-UK-3.0",
   "dependencies": {
-    "@envage/hapi-govuk-question-page": "^0.3.0",
+    "@envage/hapi-govuk-question-page": "^0.4.0",
     "@hapi/catbox-redis": "^6.0.2",
     "@hapi/hapi": "^20.1.0",
     "@hapi/hoek": "^9.1.1",
@@ -51,15 +51,13 @@
     "ffc-messaging": "^2.3.1",
     "ffc-protective-monitoring": "^1.0.0",
     "govuk-frontend": "^3.14.0",
+    "hapi-pino": "^9.1.0",
     "joi": "^17.4.0",
     "moment": "^2.29.1",
     "nunjucks": "^3.2.3"
   },
   "devDependencies": {
     "@hapi/catbox-memory": "^5.0.1",
-    "@hapi/good": "^9.0.1",
-    "@hapi/good-console": "^9.0.1",
-    "@hapi/good-squeeze": "^6.0.0",
     "@pact-foundation/pact": "^9.15.4",
     "blipp": "^4.0.2",
     "clean-webpack-plugin": "^3.0.0",
