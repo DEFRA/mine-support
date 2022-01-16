@@ -8,8 +8,8 @@ const mqSchema = joi.object({
     appInsights: joi.object()
   },
   claimQueue: {
-    name: joi.string().default('ffc-demo-web-claim'),
-    address: joi.string().default('claim'),
+    name: joi.string(),
+    address: joi.string(),
     username: joi.string(),
     password: joi.string()
   }
