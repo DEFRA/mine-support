@@ -42,7 +42,7 @@ if (mqResult.error) {
 const claimQueueConfig = { ...mqResult.value.messageQueue, ...mqResult.value.claimQueue }
 
 console.log(claimQueueConfig)
- 
+
 module.exports = {
   claimQueueConfig
 }
