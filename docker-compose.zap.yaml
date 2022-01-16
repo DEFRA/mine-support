@@ -9,9 +9,6 @@ services:
     environment:
       NODE_ENV: test
       CLAIM_QUEUE_ADDRESS: ${CLAIM_QUEUE_ADDRESS:-ffc-demo-claim}
-      MESSAGE_QUEUE_HOST: ${MESSAGE_QUEUE_HOST:-notset}
-      MESSAGE_QUEUE_PASSWORD: ${MESSAGE_QUEUE_PASSWORD:-notset}
-      MESSAGE_QUEUE_USER: ${MESSAGE_QUEUE_USER:-notset}
     volumes:
       - ./test-output:/home/node/test-output
 
