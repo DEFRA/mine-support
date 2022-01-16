@@ -2,7 +2,7 @@ const joi = require('joi')
 
 const mqSchema = joi.object({
   messageQueue: {
-    host: joi.string().default('localhost'),
+    host: joi.string(),
     useCredentialChain: joi.bool().default(false),
     type: joi.string(),
     appInsights: joi.object()
