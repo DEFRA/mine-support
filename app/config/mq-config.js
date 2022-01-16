@@ -23,7 +23,6 @@ const mqConfig = {
     appInsights: process.env.NODE_ENV === 'production' ? require('applicationinsights') : undefined
   },
   claimQueue: {
-    name: process.env.CLAIM_QUEUE_NAME,
     address: process.env.CLAIM_QUEUE_ADDRESS,
     username: process.env.MESSAGE_QUEUE_USER,
     password: process.env.MESSAGE_QUEUE_PASSWORD,
