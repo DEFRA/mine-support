@@ -10,8 +10,7 @@ const mqSchema = joi.object({
   claimQueue: {
     address: joi.string(),
     username: joi.string(),
-    password: joi.string(),
-    suffix: joi.string().allow('')
+    password: joi.string()
   }
 })
 
@@ -25,18 +24,13 @@ const mqConfig = {
   claimQueue: {
     address: process.env.CLAIM_QUEUE_ADDRESS,
     username: process.env.MESSAGE_QUEUE_USER,
-    password: process.env.MESSAGE_QUEUE_PASSWORD,
-    suffix: process.env.MESSAGE_QUEUE_SUFFIX
+    password: process.env.MESSAGE_QUEUE_PASSWORD
   }
 }
 
 const mqResult = mqSchema.validate(mqConfig, {
   abortEarly: false
 })
-
-if (mqConfig.claimQueue.suffix) {
-  mqConfig.claimQueue.address = `${mqConfig.claimQueue.address}${mqConfig.claimQueue.suffix}`
-}
 
 // Throw if config is invalid
 if (mqResult.error) {
