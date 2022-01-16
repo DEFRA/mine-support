@@ -8,10 +8,10 @@ const mqSchema = joi.object({
     appInsights: joi.object()
   },
   claimQueue: {
-    name: joi.string().default('ffc-demo-web-claim'),
-    address: joi.string().default('claim'),
+    address: joi.string(),
     username: joi.string(),
-    password: joi.string()
+    password: joi.string(),
+    suffix: joi.string().allow('')
   }
 })
 
@@ -26,13 +26,18 @@ const mqConfig = {
     name: process.env.CLAIM_QUEUE_NAME,
     address: process.env.CLAIM_QUEUE_ADDRESS,
     username: process.env.MESSAGE_QUEUE_USER,
-    password: process.env.MESSAGE_QUEUE_PASSWORD
+    password: process.env.MESSAGE_QUEUE_PASSWORD,
+    suffix: process.env.MESSAGE_QUEUE_SUFFIX
   }
 }
 
 const mqResult = mqSchema.validate(mqConfig, {
   abortEarly: false
 })
+
+if (mqConfig.claimQueue.suffix) {
+  mqConfig.claimQueue.address = `${mqConfig.claimQueue.address}${mqConfig.claimQueue.suffix}`
+}
 
 // Throw if config is invalid
 if (mqResult.error) {
