@@ -35,7 +35,8 @@
     "Steve Hunt steven.hunt@defra.gov.uk",
     "Steve Dickinson steve.dickinson@defra.gov.uk",
     "Fareed Mohammed fareed.mohammed@defra.gov.uk",
-    "Kaz Iyiola kaz.iyiola@defra.gov.uk"
+    "Kaz Iyiola kaz.iyiola@defra.gov.uk",
+    "Marc Templeton m.templeton@kainos.com"
   ],
   "license": "OGL-UK-3.0",
   "dependencies": {
@@ -48,7 +49,7 @@
     "@hapi/wreck": "17.1.0",
     "@hapi/yar": "10.1.1",
     "applicationinsights": "2.3.3",
-    "ffc-messaging": "2.3.3",
+    "ffc-messaging": "2.3.1",
     "ffc-protective-monitoring": "1.0.0",
     "govuk-frontend": "4.4.0",
     "hapi-pino": "9.1.0",
