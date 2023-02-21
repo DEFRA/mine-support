@@ -8,7 +8,7 @@ labels:
   component: web
 
 appInsights:
-  key:
+  connectionString:
 
 azureIdentity:
   clientID: not-a-real-clientID

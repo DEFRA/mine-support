@@ -9,7 +9,7 @@ services:
     container_name: ffc-demo-web
     environment:
       APPINSIGHTS_CLOUDROLE: ffc-demo-web-local
-      APPINSIGHTS_INSTRUMENTATIONKEY: ${APPINSIGHTS_INSTRUMENTATIONKEY}
+      APPINSIGHTS_CONNECTIONSTRING: ${APPINSIGHTS_CONNECTIONSTRING}
       CLAIM_QUEUE_ADDRESS: ${CLAIM_QUEUE_ADDRESS:-ffc-demo-claim}${MESSAGE_QUEUE_SUFFIX}
       COOKIE_PASSWORD: cookiecookiecookiecookiecookiecookie      
       MESSAGE_QUEUE_HOST: ${MESSAGE_QUEUE_HOST:-notset}
