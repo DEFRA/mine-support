@@ -1,3 +1,3 @@
 @Library('defra-library@v-9') _
 
-buildNodeJs defaultBranch: 'master', npmAuditFailOnIssues: false
+buildNodeJs defaultBranch: 'master', npmAuditFailOnIssues: false, snykFailOnIssues: false
