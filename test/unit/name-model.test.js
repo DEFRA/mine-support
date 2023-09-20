@@ -1,4 +1,4 @@
-const ViewModel = require('../../app/models/name')
+const ViewModel = require('../../app/routes/claim/models/name')
 
 describe('name model', () => {
   test('Should include error if error', async () => {
