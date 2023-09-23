@@ -20,8 +20,7 @@ module.exports = [{
     validate: {
       payload: schema,
       failAction: async (request, h, error) => {
-        const dateOfSubsidence = dateUtil.buildDate(request.payload.year, request.payload.month, request.payload.day, false)
-        return h.view('claim/date-of-subsidence', new ViewModel(dateOfSubsidence, error)).takeover()
+        return h.view('claim/date-of-subsidence', new ViewModel(null, error)).takeover()
       }
     },
     handler: async (request, h) => {
@@ -29,7 +28,7 @@ module.exports = [{
       try {
         dateOfSubsidence = dateUtil.buildDate(request.payload.year, request.payload.month, request.payload.day, true)
       } catch (err) {
-        return this.failAction(request, h, err)
+        return h.view('claim/date-of-subsidence', new ViewModel(dateOfSubsidence, err)).takeover()
       }
       sessionHandler.update(request, 'claim', { dateOfSubsidence })
       return h.redirect('./mine-type')

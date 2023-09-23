@@ -13,7 +13,7 @@ describe('propertyType model', () => {
 
   test('Should include property type if supplied', async () => {
     const model = new ViewModel('home')
-    const actualResult = model.model.items.find(x=>x.value==='home')
+    const actualResult = model.model.items.find(x => x.value === 'home')
     expect(actualResult.checked).toBe(true)
   })
 })

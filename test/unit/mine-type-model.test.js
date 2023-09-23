@@ -13,7 +13,7 @@ describe('email model', () => {
 
   test('Should include minetype if minetype supplied', async () => {
     const model = new ViewModel(['coal'])
-    const actualResult = model.model.items.find(x=>x.value==='coal')
+    const actualResult = model.model.items.find(x => x.value === 'coal')
     expect(actualResult.checked).toBe(true)
   })
 })

@@ -38,8 +38,14 @@ function ViewModel (dateOfSubsidence, error) {
 
   // If error is passed to model then this error property is added to the model and therefore radio macro
   if (error) {
-    this.model.errorMessage = {
-      text: 'Please select a valid date'
+    if (error.message.toLowerCase().includes('future date')) {
+      this.model.errorMessage = {
+        text: 'Date has to be in the past'
+      }
+    } else {
+      this.model.errorMessage = {
+        text: 'Please select a valid date'
+      }
     }
   }
 }
