@@ -1,4 +1,4 @@
-{{- define "adp-demo-web.container" -}}
+{{- define "ffc-demo-web.container" -}}
 ports:
 - containerPort: {{ .Values.container.port }}
   name: http
