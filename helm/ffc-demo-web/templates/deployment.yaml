@@ -1,8 +1,8 @@
-{{- include "adp-helm-library.deployment" (list . "adp-demo-web.deployment") -}}
-{{- define "adp-demo-web.deployment" -}}
+{{- include "adp-helm-library.deployment" (list . "ffc-demo-web.deployment") -}}
+{{- define "ffc-demo-web.deployment" -}}
 spec:
   template:
     spec:
       containers:
-      - {{ include "adp-helm-library.container" (list . "adp-demo-web.container") }}
+      - {{ include "adp-helm-library.container" (list . "ffc-demo-web.container") }}
 {{- end -}}
