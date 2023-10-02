@@ -8,18 +8,18 @@ Feature: Create and submit a new claim
         Then I expect that the url contains "/claim/name"
         Then  I wait on element "#name" for 500ms to be displayed
         And I clear the inputfield "#name"
-        And I click on the button "#name"
+        And I click on the inputfield "#name"
         And I add "Seymour Pattisson" to the inputfield "#name"
-        When I click on the button "#submit"
+        When I click on the button ".govuk-button"
         And   I pause for 500ms
         Then I expect that the url contains "/claim/property-type" 
         And   I pause for 500ms        
         When I clicks on the button
-        When I click on the button "#submit"
+        When I click on the button ".govuk-button"
         And I pause for 500ms
         Then I expect that the url contains "/claim/accessible"
         When I click on the yes accessibilty button
-        When I click on the button "#submit"
+        When I click on the button ".govuk-button"
         And   I pause for 500ms
         Then I expect that the url contains "/claim/date-of-subsidence"
         And I clear the inputfield "#date-of-subsidence-day"
@@ -28,13 +28,13 @@ Feature: Create and submit a new claim
         And I add "01" to the inputfield "#date-of-subsidence-month"
         And I clear the inputfield "#date-of-subsidence-year"
         And I add "1970" to the inputfield "#date-of-subsidence-year"
-        And I click on the button "#submit"
+        And I click on the button ".govuk-button"
         And   I pause for 500ms
         Then  I expect that the url contains "/claim/mine-type"
         When I click on the coal mine checkbox
-        When I click on the button "#submit"
+        When I click on the button ".govuk-button"
         And I clear the inputfield "#email"
         And I add "seymour.pattisson@defra.gov.uk" to the inputfield "#email"
-        When I click on the button "#submit"
+        When I click on the button ".govuk-button"
         And   I pause for 1800ms
         Then I expect that the url contains "/claim/confirmation"

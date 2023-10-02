@@ -10,7 +10,7 @@ Feature: Date of Subsidence Page checks
         And I add "01" to the inputfield "#date-of-subsidence-month"
         And I clear the inputfield "#date-of-subsidence-year"
         And I add "1970" to the inputfield "#date-of-subsidence-year"
-        And I click on the button "#submit"
+        And I click on the button ".govuk-button"
         And   I pause for 500ms
         Then I expect that the url contains "/claim/mine-type"
 
