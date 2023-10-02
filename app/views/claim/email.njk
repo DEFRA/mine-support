@@ -20,7 +20,8 @@
     <form method="POST" action="/claim/email">
       {{ govukInput(model) }}
       {{ govukButton({
-        text: "Submit application"
+        text: "Submit application",
+        id: "submit"
       }) }}
     </form>
 
