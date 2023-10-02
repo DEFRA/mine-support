@@ -11,6 +11,6 @@ Feature: Date of Subsidence Page checks
         And I clear the inputfield "#date-of-subsidence-year"
         And I add "1970" to the inputfield "#date-of-subsidence-year"
         And I click on the button ".govuk-button"
-        And   I pause for 500ms
+        And I pause for 2000ms
         Then I expect that the url contains "/claim/mine-type"
 
