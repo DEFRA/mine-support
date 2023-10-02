@@ -8,7 +8,7 @@ Feature: Create and submit a new claim
         Then I expect that the url contains "/claim/name"
         Then  I wait on element "#name" for 500ms to be displayed
         And I clear the inputfield "#name"
-        And I click on the inputfield "#name"
+        And I click on the element "#name"
         And I add "Seymour Pattisson" to the inputfield "#name"
         When I click on the button ".govuk-button"
         And   I pause for 500ms
