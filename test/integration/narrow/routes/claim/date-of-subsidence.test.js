@@ -21,11 +21,23 @@ describe('Date of Subsidence test', () => {
     expect(response.statusCode).toBe(200)
   })
 
+  test('GET /claim/date-of-subsidence returns as error if date subsidence is invalid', async () => {
+    const options = {
+      method: 'POST',
+      url: '/claim/date-of-subsidence',
+      payload: { month: '01', day: '01' }
+    }
+
+    const postResponse = await server.inject(options)
+    expect(postResponse.statusCode).toBe(200)
+    expect(postResponse.payload).toContain('Please select a valid date')
+  })
+
   test('GET /claim/date-of-subsidence returns as error if date subsidence is in the future', async () => {
     const options = {
       method: 'POST',
       url: '/claim/date-of-subsidence',
-      payload: { dateOfSubsidence__year: '2122', dateOfSubsidence__month: '01', dateOfSubsidence__day: '01' }
+      payload: { year: '2098', month: '01', day: '01' }
     }
 
     const postResponse = await server.inject(options)
@@ -37,7 +49,7 @@ describe('Date of Subsidence test', () => {
     const options = {
       method: 'POST',
       url: '/claim/date-of-subsidence',
-      payload: { dateOfSubsidence__year: '2021', dateOfSubsidence__month: '01', dateOfSubsidence__day: '01' }
+      payload: { year: '2021', month: '01', day: '01' }
     }
 
     const postResponse = await server.inject(options)
