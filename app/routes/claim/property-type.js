@@ -25,6 +25,6 @@ module.exports = [{
     handler: async (request, h) => {
       sessionHandler.update(request, 'claim', request.payload)
       return h.redirect('./accessible')
-    }
+    } 
   }  
 }]
