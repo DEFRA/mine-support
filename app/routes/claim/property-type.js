@@ -16,6 +16,6 @@ module.exports = [
         pageDefinition: require('./page-definitions/property-type')
       }
     },
-    options: require('./question-page-options')
+    options: require('./question-page-options')   
   }
 ]
