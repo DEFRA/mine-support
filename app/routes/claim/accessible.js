@@ -1,21 +1,30 @@
+const schema = require('../../schemas/accessible')
 const sessionHandler = require('../../services/session-handler')
+const ViewModel = require('./models/accessible')
 
-module.exports = [
-  {
-    method: ['GET', 'POST'],
-    path: '/claim/accessible',
-    handler: {
-      'hapi-govuk-question-page': {
-        getConfig: async () => {
-          return {
-            $VIEW$: { serviceName: 'FFC Demo Service' }
-          }
-        },
-        getData: (request) => sessionHandler.get(request, 'claim'),
-        getNextPath: () => './date-of-subsidence',
-        pageDefinition: require('./page-definitions/accessible')
+module.exports = [{
+  method: 'GET',
+  path: '/claim/accessible',
+  options: {
+    handler: (request, h) => {
+      const claim = sessionHandler.get(request, 'claim')
+      return h.view('claim/accessible', new ViewModel(claim.accessible, null))
+    }
+  }
+},
+{
+  method: 'POST',
+  path: '/claim/accessible',
+  options: {
+    validate: {
+      payload: schema,
+      failAction: async (request, h, error) => {
+        return h.view('claim/accessible', new ViewModel(request.payload.accessible, error)).takeover()
       }
     },
-    options: require('./question-page-options')
+    handler: async (request, h) => {
+      sessionHandler.update(request, 'claim', request.payload)
+      return h.redirect('./date-of-subsidence')
+    }
   }
-]
+}]

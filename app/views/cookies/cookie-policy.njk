@@ -130,7 +130,8 @@
       <form action="/cookies" method="post" novalidate>
         {{ govukRadios(analytics) }}
         {{ govukButton({
-          text: "Save cookie settings"
+          text: "Save cookie settings",
+        id: "submit"
         }) }}
       </form>
     </div>
