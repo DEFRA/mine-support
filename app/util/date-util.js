@@ -7,6 +7,9 @@ module.exports = {
       if (!testDate.isValid()) {
         throw new Error('Invalid date')
       }
+      if (new Date(year, month, day) > new Date()) {
+        throw new Error('Future date')
+      }
     }
     return new Date(year, month - 1, day)
   }
