@@ -3,3 +3,4 @@
 {{- end }}
 {{- define "ffc-demo-web.azure-identity-binding" -}}
 {{- end -}}
+ 
