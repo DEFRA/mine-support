@@ -9,21 +9,21 @@
         },
         {
             "key": "PORT",
-            "value": 3000,
+            "value": "3000",
             "label": "{{serviceName}}",
             "content_type": "",
             "tags": {}
         },
         {
             "key": "REST_CLIENT_TIMEOUT_IN_MILLIS",
-            "value": 20000,
+            "value": "20000",
             "label": "{{serviceName}}",
             "content_type": "",
             "tags": {}
         },
         {
             "key": "STATIC_CACHE_TIMEOUT_IN_MILLIS",
-            "value": 54000,
+            "value": "54000",
             "label": "{{serviceName}}",
             "content_type": "",
             "tags": {}
@@ -58,7 +58,7 @@
         },
         {
             "key": "REDIS_PORT",
-            "value": 6380,
+            "value": "6380",
             "label": "{{serviceName}}",
             "content_type": "",
             "tags": {}
