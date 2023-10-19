@@ -37,7 +37,7 @@
         },
         {
             "key": "CLAIM_QUEUE_ADDRESS",
-            "value": "claim",
+            "value": "ffc-demo-claim",
             "label": "{{serviceName}}",
             "content_type": "",
             "tags": {}
