@@ -58,7 +58,7 @@
         },
         {
             "key": "REDIS_PORT",
-            "value": "6380",
+            "value": 6380,
             "label": "{{serviceName}}",
             "content_type": "",
             "tags": {}
