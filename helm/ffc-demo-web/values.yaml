@@ -73,6 +73,9 @@ serviceAccount:
 containerConfigMap:
   name: 'ffc-demo-web-config-map'
   configServiceUrl: 'https://sndadpinfac1401.azconfig.io'
+  auth:
+    workloadIdentity:
+      clientId: <PLACEHOLDER>
   keyValues:
     labelFilter: 'ffc-demo-web'
     refresh:
