@@ -79,21 +79,21 @@
         },
         {
             "key": "COOKIE_PASSWORD",
-            "value": "{\"uri\":\"https://{{keyvaultName}}.vault.azure.net/secrets/{{servicename}}-COOKIE-PASSWORD\"}",
+            "value": "{\"{{resourceid}}/{{servicename}}-COOKIE-PASSWORD\"}",
             "label": "{{serviceName}}",
             "content_type": "{{keyVaultContentType}}",
             "tags": {}
         },
         {
             "key": "REDIS_PASSWORD",
-            "value": "{\"uri\":\"https://{{keyvaultName}}.vault.azure.net/secrets/{{servicename}}-REDIS-PASSWORD\"}",
+            "value": "{\"{{resourceid}}/{{servicename}}-REDIS-PASSWORD\"}",
             "label": "{{serviceName}}",
             "content_type": "{{keyVaultContentType}}",
             "tags": {}
         },
         {
             "key": "APPINSIGHTS_CONNECTIONSTRING",
-            "value": "{\"uri\":\"https://{{keyvaultName}}.vault.azure.net/secrets/{{servicename}}-APPINSIGHTS-CONNECTIONSTRING\"}",
+            "value": "{\"{{resourceid}}/{{servicename}}-APPINSIGHTS-CONNECTIONSTRING\"}",
             "label": "{{serviceName}}",
             "content_type": "{{keyVaultContentType}}",
             "tags": {}
