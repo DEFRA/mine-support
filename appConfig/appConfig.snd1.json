@@ -79,21 +79,21 @@
         },
         {
             "key": "COOKIE_PASSWORD",
-            "value": "{{resourceid}}/{{servicename}}-COOKIE-PASSWORD",
+            "value": "{\"{{resourceid}}/{{servicename}}-COOKIE-PASSWORD\"}",
             "label": "{{serviceName}}",
             "content_type": "{{keyVaultContentType}}",
             "tags": {}
         },
         {
             "key": "REDIS_PASSWORD",
-            "value": "{{resourceid}}/{{servicename}}-REDIS-PASSWORD",
+            "value": "{\"{{resourceid}}/{{servicename}}-REDIS-PASSWORD\"}",
             "label": "{{serviceName}}",
             "content_type": "{{keyVaultContentType}}",
             "tags": {}
         },
         {
             "key": "APPINSIGHTS_CONNECTIONSTRING",
-            "value": "{{resourceid}}/{{servicename}}-APPINSIGHTS-CONNECTIONSTRING",
+            "value": "{\"{{resourceid}}/{{servicename}}-APPINSIGHTS-CONNECTIONSTRING\"}",
             "label": "{{serviceName}}",
             "content_type": "{{keyVaultContentType}}",
             "tags": {}
