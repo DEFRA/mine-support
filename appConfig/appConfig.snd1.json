@@ -99,10 +99,10 @@
             "tags": {}
         },
         {
-            "key": "TEST",
-            "value": "test",
+            "key": "TEST1",
+            "value": "test1",
             "label": "{{serviceName}}",
-            "content_type": "",
+            "content_type": "text",
             "tags": {}
         }
     ]
