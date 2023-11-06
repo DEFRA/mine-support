@@ -30,4 +30,4 @@
   value: "{{servicename}}-APPINSIGHTS-CONNECTIONSTRING" 
   type: "keyvault"
 - key: Test
-  value: "63806"
+  value: "636"
