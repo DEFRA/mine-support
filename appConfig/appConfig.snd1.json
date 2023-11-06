@@ -104,6 +104,13 @@
             "label": "{{serviceName}}",
             "content_type": "text",
             "tags": {}
-        }
+        },
+                {
+                    "key": "APPINSIGHTS_TEST",
+                    "value": "{\"{{resourceid}}/{{servicename}}-APPINSIGHTS-CONNECTIONSTRING\"}",
+                    "label": "{{serviceName}}",
+                    "content_type": "{{keyVaultContentType}}",
+                    "tags": {}
+                }
     ]
 }
