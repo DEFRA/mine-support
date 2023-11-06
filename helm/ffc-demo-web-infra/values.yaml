@@ -1,6 +1,5 @@
 namespace: ffc-demo
 
-subscriptionId: "55f3b8c6-6800-41c7-a40d-2adb5e4e1bd1"
 serviceBusResourceGroupName: sndadpinfrg1401
 serviceBusNamespaceName: sndadpinfsb1401
 
@@ -9,3 +8,21 @@ asoAnnotations:
 
 namespaceQueues:
   - name: claim
+    roleAssignments:
+      - roleName: 'QueueSender'
+
+tags:
+  Environment: SND1
+  ServiceCode: ADP
+  ServiceName: ffc-demo-web
+  ServiceType: Shared
+  Purpose: Define purpose
+  ManagedBy: ASO
+  kubernetes_cluster: SNDADPINFAK1401
+
+#Dummy placeholder values only for linting. NOT TO BE POPULATED
+subscriptionId: "dummySubscriptionId"
+userAssignedIdentity: {}
+teamMIPrefix: "dummy-mi-prefix"
+serviceName: "dummy-svc"
+teamResourceGroupName: "dummy-rsg"
