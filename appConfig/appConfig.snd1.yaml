@@ -30,7 +30,4 @@
   value: "{{servicename}}-APPINSIGHTS-CONNECTIONSTRING" 
   type: "keyvault"
 - key: Test
-  value: "6380" 
-- key: TEST_KV
-  value: "{{servicename}}-APPINSIGHTS-CONNECTIONSTRING" 
-  type: "keyvault"    
+  value: "63806"
