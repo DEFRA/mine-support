@@ -96,12 +96,5 @@
         "label": "{{serviceName}}",
         "content_type": "{{keyVaultContentType}}",
         "tags": {}
-    },
-    {
-        "key": "TEST1",
-        "value": "test2",
-        "label": "{{serviceName}}",
-        "content_type": "text",
-        "tags": {}
     }
 ]
