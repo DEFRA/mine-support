@@ -31,3 +31,8 @@
   type: "keyvault"
 - key: Test
   value: "636"
+- key: Test2
+  value: "636"
+- key: APPINSIGHTS2
+  value: "{{servicename}}-APPINSIGHTS-CONNECTIONSTRING" 
+  type: "keyvault"
