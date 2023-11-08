@@ -1,0 +1,4 @@
+- key: test1
+  value: "production"
+- key: test2
+  value: "ffc-demo-claim"  
