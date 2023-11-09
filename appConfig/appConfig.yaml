@@ -14,4 +14,5 @@
   value: "6380"        
 - key: REDIS_PARTITION
   value: "ffc-demo"        
-   
+- key: test
+  value: "test"       
