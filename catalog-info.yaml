@@ -15,7 +15,8 @@ metadata:
     - node
     - service-bus
     - redis
-    - public
+    - external
+    - front-end
 spec:
   type: frontend
   lifecycle: beta
