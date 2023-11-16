@@ -1,0 +1,15 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: claim-pubsub
+spec:
+  type: pubsub.azure.servicebus
+  version: v1
+  metadata:
+  - name: connectionString 
+    value: "Endpoint=sb://dapr-test.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=ofz3+SgMLNhm4mvf29UurtjgnqiGvXdmQ+ASbDyFuEQ=" 
+scopes:
+   - ffc-demo-web
+topic:
+ -name: claim
+  

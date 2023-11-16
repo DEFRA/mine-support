@@ -1,4 +1,5 @@
 .config/
+.dapr/logs
 .DS_Store
 .npm/
 .standard-v12-cache/

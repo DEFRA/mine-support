@@ -1,5 +1,7 @@
+require('dotenv').config()
 const Joi = require('joi')
 const mqConfig = require('./mq-config')
+
 
 // Define config schema
 const schema = Joi.object({

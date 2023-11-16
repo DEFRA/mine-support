@@ -1,32 +1,35 @@
-const mqConfig = require('../config').claimQueueConfig
-const { MessageSender } = require('ffc-messaging')
-const createMessage = require('./create-message')
-const sessionHandler = require('../services/session-handler')
-const sendProtectiveMonitoringEvent = require('../services/protective-monitoring-service')
+const { DaprClient } = require("@dapr/dapr");
+const sessionHandler = require("../services/session-handler");
+const sendProtectiveMonitoringEvent = require("../services/protective-monitoring-service");
 
-let claimSender
+const daprHost = process.env.DAPR_HOST || "http://localhost";
+const daprPort = process.env.DAPR_HTTP_PORT || "3500";
+const pubSubName = "claim-pubsub";
+const pubSubTopic = "claim";
 
-async function stop () {
-  await claimSender.closeConnection()
+let daprClient;
+
+async function startDaprClient() {
+  daprClient = new DaprClient({ daprHost, daprPort });
 }
 
-process.on('SIGTERM', async () => {
-  await stop()
-  process.exit(0)
-})
+async function publishClaim(request) {
+  try {
+    if (!daprClient) {
+      await startDaprClient();
+    }
 
-process.on('SIGINT', async () => {
-  await stop()
-  process.exit(0)
-})
+    const claim = sessionHandler.get(request, "claim");
+    console.log(`Publishing claim ${claim.claimId} to Dapr pub/sub`);
 
-async function publishClaim (request) {
-  claimSender = new MessageSender(mqConfig)
-  const claim = sessionHandler.get(request, 'claim')
-  const message = createMessage(claim)
-  await claimSender.sendMessage(message)
-  await sendProtectiveMonitoringEvent(request, claim, 'Claim submitted')
-  await claimSender.closeConnection()
+    await daprClient.pubsub.publish(pubSubName, pubSubTopic, claim);
+
+    await sendProtectiveMonitoringEvent(request, claim, "Claim submitted");
+
+    console.log("Claim published successfully to Dapr pub/sub");
+  } catch (error) {
+    console.error("Error during claim publication:", error);
+  }
 }
 
-module.exports = publishClaim
+module.exports = publishClaim;

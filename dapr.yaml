@@ -1,0 +1,12 @@
+version: 1
+common: 
+  resourcesPath: dapr/components 
+apps:
+  - appID: ffc-demo-web
+    appDirPath: ./
+    appChannelAddress: 127.0.0.1 
+    configFilePath: dapr/components/pubsub-config.yaml 
+    appProtocol: http
+    appPort: 3500
+    command: ["npm", "run", "start:watch"]
+   
