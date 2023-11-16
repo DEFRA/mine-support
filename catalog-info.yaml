@@ -20,33 +20,23 @@ metadata:
 spec:
   type: frontend
   lifecycle: beta
-  owner: "group:default/fcp-payments"
-  system: ffc-demo-service
+  owner: "group:default/fcp-demo"
+  system: fcp-demo-service
   dependsOn:
-    - "resource:default/ffc-demo-claim-queue"
-    - "resource:default/ffc-demo-web-redis"
+    - "resource:default/fcp-demo-claim-queue"
+    - "resource:default/ADPINFSB01"
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
-  name: ffc-demo-web-redis
-  description: Redis cache for the ffc-demo-web service
-spec:
-  type: cache
-  owner: "group:default/fcp-payments"
-  system: ffc-demo-service
----
-apiVersion: backstage.io/v1alpha1
-kind: Resource
-metadata:
-  name: ffc-demo-claim-queue
+  name: fcp-demo-claim-queue
   description: Claims message queue
   tags:
     - azure-service-bus
     - queue
 spec:
   type: message-queue
-  owner: "group:default/fcp-payments"
-  system: ffc-demo-service
+  owner: "group:default/fcp-demo"
+  system: fcp-demo-service
   dependsOn: 
-    - "resource:default/ffc-demo-service-bus"
+    - "resource:default/ADPINFSB01"
