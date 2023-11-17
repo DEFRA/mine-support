@@ -1,5 +1,5 @@
 const mqConfig = require('../config').claimQueueConfig
-const { MessageSender } = require('ffc-messaging')
+const { MessageSender } = require('adp-messaging')
 const createMessage = require('./create-message')
 const sessionHandler = require('../services/session-handler')
 const sendProtectiveMonitoringEvent = require('../services/protective-monitoring-service')

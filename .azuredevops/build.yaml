@@ -56,7 +56,9 @@ extends:
       filepath: "./appConfig"  
       variableGroups: 
         - ffc-demo-web-snd1
+        - ffc-demo-web-snd2
+        - ffc-demo-web-snd3
       variables:
-        - ffc-demo-web-APPINSIGHTS-CONNECTIONSTRING 
-        - ffc-demo-web-COOKIE-PASSWORD 
-        - ffc-demo-web-REDIS-PASSWORD 
+        - ffc-demo-web-APPINSIGHTS-CONNECTIONSTRING
+        - ffc-demo-web-COOKIE-PASSWORD
+        - ffc-demo-web-REDIS-PASSWORD
