@@ -8,7 +8,7 @@ jest.mock('ffc-protective-monitoring', () => {
 })
 
 const mockSendMessage = jest.fn()
-jest.mock('ffc-messaging', () => {
+jest.mock('adp-messaging', () => {
   return {
     MessageSender: jest.fn().mockImplementation(() => {
       return {
