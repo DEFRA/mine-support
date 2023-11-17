@@ -96,5 +96,12 @@
         "label": "{{serviceName}}",
         "content_type": "{{keyVaultContentType}}",
         "tags": {}
+    },
+    {
+        "key": "FONT_COLOR",
+        "value": "red",
+        "label": "{{serviceName}}",
+        "content_type": "",
+        "tags": {}
     }
 ]

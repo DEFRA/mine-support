@@ -2,3 +2,8 @@ namespaceQueues:
   - name: claim
     roleAssignments:
       - roleName: 'QueueSender'
+
+namespaceTopics:
+  - name: claim-test
+    roleAssignments:
+      - roleName: 'TopicSender'
