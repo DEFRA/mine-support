@@ -4,6 +4,6 @@ namespaceQueues:
       - roleName: 'QueueSender'
 
 namespaceTopics:
-  - name: claim-test
+  - name: claim-notify
     roleAssignments:
       - roleName: 'TopicSender'
