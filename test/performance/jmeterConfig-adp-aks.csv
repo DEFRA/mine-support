@@ -1,1 +1,1 @@
-http;ffc-demo-web.default.svc.cluster.local;80
+http;ffc-demo-web.ffc-demo.svc.cluster.local;80
