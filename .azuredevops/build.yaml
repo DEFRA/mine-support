@@ -36,7 +36,7 @@ resources:
       name: DEFRA/adp-pipeline-common
       endpoint: DEFRA
       type: github
-      ref: refs/heads/rv/acrbuild
+      ref: refs/heads/rv/defaultvalues
 
 extends:
   template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
@@ -45,15 +45,8 @@ extends:
     deployFromFeature: ${{ parameters.deployFromFeature }}
     deployConfigOnly: ${{ parameters.deployConfigOnly }}
     appBuildConfig:
-      appFrameworkType: "nodejs"  
-      projectPath: "./package.json"
-      manifestPath: "./package.json"
       imageRepoName: "ffc-demo-web"
-    appTestConfig:
-      testFilePath: "./docker-compose.test.yaml"
-      snykTestFilePath: "./docker-compose.snyk.yaml"
     appDeployConfig:
-      filepath: "./appConfig"  
       filetype: "yaml"
       variableGroups: 
         - ffc-demo-web-snd1
