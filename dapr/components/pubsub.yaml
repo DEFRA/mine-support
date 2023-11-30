@@ -3,13 +3,10 @@ kind: Component
 metadata:
   name: claim-pubsub
 spec:
-  type: pubsub.azure.servicebus
+  type: pubsub.azure.servicebus.queues
   version: v1
   metadata:
   - name: connectionString 
-    value: "Endpoint=sb://dapr-test.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=ofz3+SgMLNhm4mvf29UurtjgnqiGvXdmQ+ASbDyFuEQ=" 
+    value: "Endpoint=sb://demo-service.servicebus.windows.net/;SharedAccessKeyName=ffc-demo-claim;SharedAccessKey=8BMSwFSLiKTQSDuFM35WH2KI50QNd35f9+ASbPWwpD0=;EntityPath=ffc-demo-claim"
 scopes:
    - ffc-demo-web
-topic:
- -name: claim
-  

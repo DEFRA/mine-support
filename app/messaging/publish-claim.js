@@ -5,7 +5,7 @@ const sendProtectiveMonitoringEvent = require("../services/protective-monitoring
 const daprHost = process.env.DAPR_HOST || "http://localhost";
 const daprPort = process.env.DAPR_HTTP_PORT || "3500";
 const pubSubName = "claim-pubsub";
-const pubSubTopic = "claim";
+const queueName = "ffc-demo-claim";
 
 let daprClient;
 
@@ -22,7 +22,7 @@ async function publishClaim(request) {
     const claim = sessionHandler.get(request, "claim");
     console.log(`Publishing claim ${claim.claimId} to Dapr pub/sub`);
 
-    await daprClient.pubsub.publish(pubSubName, pubSubTopic, claim);
+    await daprClient.pubsub.publish(pubSubName, queueName, claim);
 
     await sendProtectiveMonitoringEvent(request, claim, "Claim submitted");
 
