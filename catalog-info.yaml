@@ -11,6 +11,7 @@ metadata:
     dev.azure.com/project: DEFRA-FFC
     dev.azure.com/build-definition: DEFRA.ffc-demo-web
     sonarqube.org/project-key: adp-ffc-demo-web
+    backstage.io/techdocs-ref: url:https://dev.azure.com/defragovuk/DEFRA-FFC/_git/DEFRA-FFC.wiki
   tags:
     - node
     - service-bus
