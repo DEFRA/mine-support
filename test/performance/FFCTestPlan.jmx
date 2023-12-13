@@ -31,7 +31,7 @@
           <collectionProp name="Arguments.arguments">
             <elementProp name="configFilename" elementType="Argument">
               <stringProp name="Argument.name">configFilename</stringProp>
-              <stringProp name="Argument.value">${__P(configFilename,jmeterConfig-adp-afd.csv)}</stringProp>
+              <stringProp name="Argument.value">${__P(configFilename,jmeterConfig.csv)}</stringProp>
               <stringProp name="Argument.desc">The filename of the JMeter Test configuration file. Values are jmeterConfig.csv, jmeterConfig-adp-aks.csv</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
