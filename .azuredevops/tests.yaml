@@ -1,0 +1,12 @@
+trigger: none
+
+jobs:
+- job: RunTest
+  workspace:
+    clean: all
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - script: |
+      cd test/performance
+      docker-compose -f ../../docker-compose.yaml -f docker-compose.jmeter.yaml run jmeter-test
