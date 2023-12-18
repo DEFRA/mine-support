@@ -10,3 +10,39 @@ jobs:
   - script: |
       cd test/performance
       docker-compose -f ../../docker-compose.yaml -f docker-compose.jmeter.yaml run jmeter-test
+
+  - task: CopyFiles@2
+    displayName: Copy JMeter HTML Report
+    inputs:
+      SourceFolder: '/test-output/htmlreport'
+      Contents: |
+        '**'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/perf-tests'
+      OverWrite: true
+      flattenFolders: false
+
+  - task: CopyFiles@2
+    displayName: Copy JMeter Results (testresults.jtl)
+    inputs:
+      SourceFolder: '/perf-tests'
+      Contents: |
+        testresults.jtl
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/perf-tests'
+      OverWrite: false
+      flattenFolders: true
+
+  - task: PublishPipelineArtifact@1
+    displayName: Publish Performance Test Report
+    inputs:
+      targetPath: $(Build.ArtifactStagingDirectory)/perf-tests
+      artifact: $(build.buildid)-perf-results
+
+  - task: DownloadPipelineArtifact@0
+    inputs:
+      artifactName: $(build.buildid)-perf-results
+
+  - task: LakshayKaushik.PublishHTMLReports.publishhtmlreport.publishhtmlreport@1
+    displayName: Publish Html Report
+    inputs:
+      htmlType: Jmeter
+      JmeterReportsPath: '/test-output/htmlreport'
