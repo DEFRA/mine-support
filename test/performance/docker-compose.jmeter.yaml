@@ -7,6 +7,8 @@ services:
     image: ffc-demo-web
     environment:
       NODE_ENV: test
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   jmeter-test:
     image: justb4/jmeter:5.1.1
     depends_on:
