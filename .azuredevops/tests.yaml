@@ -30,9 +30,7 @@ jobs:
   - task: CopyFiles@2
     displayName: Copy JMeter HTML Report
     inputs:
-      SourceFolder: '$(System.DefaultWorkingDirectory)/app/test-output/htmlreport'
-      Contents: |
-        '**'
+      SourceFolder: '$(System.DefaultWorkingDirectory)/test-output/htmlreport'
       TargetFolder: '$(Build.ArtifactStagingDirectory)/perf-tests'
       OverWrite: true
       flattenFolders: false
