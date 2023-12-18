@@ -23,14 +23,14 @@ jobs:
         echo "Build.SourcesDirectory:"
         echo "$(Build.SourcesDirectory)"
 
-  - powershell: Get-ChildItem -Path '$(System.DefaultWorkingDirectory)' -recurse
+  # - powershell: Get-ChildItem -Path '$(System.DefaultWorkingDirectory)' -recurse
 
   - powershell: Get-ChildItem -Path '$(Agent.WorkFolder)' -recurse
 
   - task: CopyFiles@2
     displayName: Copy JMeter HTML Report
     inputs:
-      SourceFolder: '$(System.DefaultWorkingDirectory)/test-output/htmlreport'
+      SourceFolder: '$(System.DefaultWorkingDirectory)/app/test-output/htmlreport'
       Contents: |
         '**'
       TargetFolder: '$(Build.ArtifactStagingDirectory)/perf-tests'
@@ -40,7 +40,7 @@ jobs:
   - task: CopyFiles@2
     displayName: Copy JMeter Results (testresults.jtl)
     inputs:
-      SourceFolder: '$(System.DefaultWorkingDirectory)/perf-tests'
+      SourceFolder: '$(System.DefaultWorkingDirectory)/app/test/performance'
       Contents: |
         testresults.jtl
       TargetFolder: '$(Build.ArtifactStagingDirectory)/perf-tests'
