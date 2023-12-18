@@ -1,7 +1,7 @@
 trigger: none
 
 jobs:
-- job: RunTest
+- job: RunPerformanceTests
   workspace:
     clean: all
   pool:
@@ -10,22 +10,23 @@ jobs:
   - script: |
       cd test/performance
       docker-compose -f ../../docker-compose.yaml -f docker-compose.jmeter.yaml run jmeter-test
+    displayName: Run Performance Tests
 
-  - task: CmdLine@2
-    inputs:
-      script: |
-        echo "Structure of work folder of this pipeline:"
-        tree $(Agent.WorkFolder)/1
-        echo "Build.ArtifactStagingDirectory:" 
-        echo "$(Build.ArtifactStagingDirectory)"
-        echo "Build.BinariesDirectory:" 
-        echo "$(Build.BinariesDirectory)"
-        echo "Build.SourcesDirectory:"
-        echo "$(Build.SourcesDirectory)"
+  # - task: CmdLine@2
+  #   inputs:
+  #     script: |
+  #       echo "Structure of work folder of this pipeline:"
+  #       tree $(Agent.WorkFolder)/1
+  #       echo "Build.ArtifactStagingDirectory:" 
+  #       echo "$(Build.ArtifactStagingDirectory)"
+  #       echo "Build.BinariesDirectory:" 
+  #       echo "$(Build.BinariesDirectory)"
+  #       echo "Build.SourcesDirectory:"
+  #       echo "$(Build.SourcesDirectory)"
 
   # - powershell: Get-ChildItem -Path '$(System.DefaultWorkingDirectory)' -recurse
 
-  - powershell: Get-ChildItem -Path '$(Agent.WorkFolder)' -recurse
+  # - powershell: Get-ChildItem -Path '$(Agent.WorkFolder)' -recurse
 
   - task: CopyFiles@2
     displayName: Copy JMeter HTML Report
