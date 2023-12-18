@@ -43,7 +43,7 @@ jobs:
         testresults.jtl
       TargetFolder: '$(Build.ArtifactStagingDirectory)/perf-tests'
       OverWrite: false
-      flattenFolders: true
+      flattenFolders: true           
 
   - task: PublishPipelineArtifact@1
     displayName: Publish Performance Test Report
@@ -51,9 +51,24 @@ jobs:
       targetPath: $(Build.ArtifactStagingDirectory)/perf-tests
       artifact: $(build.buildid)-perf-results
 
-  - task: DownloadPipelineArtifact@0
+  - script: |
+      JMETER_RESULTS=testresults.jtl
+      JUNIT_RESULTS=testresults.xml
+      python3 $(System.DefaultWorkingDirectory)/.azuredevops/scripts/jtl_junit_converter.py $JMETER_RESULTS $JUNIT_RESULTS
+    workingDirectory: '$(Build.ArtifactStagingDirectory)/perf-tests'
+    displayName: 'Convert JMeter Results to JUnit Format'
+
+  - task: PublishTestResults@2
     inputs:
-      artifactName: $(build.buildid)-perf-results
+      testResultsFormat: 'JUnit'
+      testRunTitle: 'FFC Demo Tests'
+      testResultsFiles: '$(Build.ArtifactStagingDirectory)/perf-tests/testresults.xml'
+      failTaskOnFailedTests: true
+    displayName: 'Publish Load Testing Results'
+  
+  # - task: DownloadPipelineArtifact@0
+  #   inputs:
+  #     artifactName: $(build.buildid)-perf-results
 
   # - task: LakshayKaushik.PublishHTMLReports.publishhtmlreport.publishhtmlreport@1
   #   displayName: Publish Html Report
