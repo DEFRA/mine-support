@@ -41,8 +41,8 @@ jobs:
     inputs:
       artifactName: $(build.buildid)-perf-results
 
-  - task: LakshayKaushik.PublishHTMLReports.publishhtmlreport.publishhtmlreport@1
-    displayName: Publish Html Report
-    inputs:
-      htmlType: Jmeter
-      JmeterReportsPath: '/test-output/htmlreport'
+  # - task: LakshayKaushik.PublishHTMLReports.publishhtmlreport.publishhtmlreport@1
+  #   displayName: Publish Html Report
+  #   inputs:
+  #     htmlType: Jmeter
+  #     JmeterReportsPath: '/test-output/htmlreport'
