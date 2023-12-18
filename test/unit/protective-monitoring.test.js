@@ -7,7 +7,6 @@ jest.mock('ffc-protective-monitoring', () => {
   }
 })
 
-const sendProtectiveMonitoringEvent = require('../../app/services/protective-monitoring-service')
 let request
 
 describe('send protective monitoring event', () => {
@@ -20,6 +19,10 @@ describe('send protective monitoring event', () => {
     email: 'joe.bloggs@defra.gov.uk'
   }
 
+  beforeEach(() => {
+    process.env.COOKIE_PASSWORD = 'cookie_password_cookie_password'
+  })
+
   test('should send protective monitoring payload with x-forwarded-for header', async () => {
     request = {
       headers: {
@@ -27,18 +30,21 @@ describe('send protective monitoring event', () => {
       }
     }
 
+    const sendProtectiveMonitoringEvent = require('../../app/services/protective-monitoring-service')
+
     await sendProtectiveMonitoringEvent(request, claim, 'Test message')
     expect(mockSendEvent).toHaveBeenCalledTimes(1)
   })
 
   test('should send protective monitoring payload with remoteAddress', async () => {
     request = {
-      headers: {
-      },
+      headers: {},
       info: {
         remoteAddress: '127.0.0.1'
       }
     }
+
+    const sendProtectiveMonitoringEvent = require('../../app/services/protective-monitoring-service')
 
     await sendProtectiveMonitoringEvent(request, claim, 'Test message')
     expect(mockSendEvent).toHaveBeenCalledTimes(2)
