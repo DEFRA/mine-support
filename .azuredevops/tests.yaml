@@ -76,3 +76,38 @@ jobs:
   #   inputs:
   #     htmlType: Jmeter
   #     JmeterReportsPath: '/test-output/htmlreport'
+
+
+- job: RunAcceptanceTests
+  workspace:
+    clean: all
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - script: |
+      # start web application
+      docker-compose up -d
+      
+      # run acceptance
+      cd test/acceptance
+      docker-compose run --rm wdio-cucumber
+    displayName: Run Acceptance Tests
+
+  - powershell: Get-ChildItem -Path '$(System.DefaultWorkingDirectory)' -recurse
+
+  - powershell: Get-ChildItem -Path '$(Agent.WorkFolder)' -recurse    
+
+  - task: CopyFiles@2
+    displayName: Copy Acceptance HTML Report
+    inputs:
+      SourceFolder: '$(System.DefaultWorkingDirectory)/test/acceptance/html-reports'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/acceptance-tests'
+      OverWrite: true
+      flattenFolders: false         
+
+  - task: PublishPipelineArtifact@1
+    displayName: Publish Acceptance Test Report
+    inputs:
+      targetPath: $(Build.ArtifactStagingDirectory)/acceptance-tests
+      artifact: $(build.buildid)-acceptance-results
+
