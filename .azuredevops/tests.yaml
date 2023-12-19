@@ -5,7 +5,7 @@ jobs:
   workspace:
     clean: all
   pool:
-    vmImage: 'ubuntu-latest'
+    vmImage: 'ubuntu-latest'  
   steps:
   - script: |
       cd test/performance
@@ -83,6 +83,10 @@ jobs:
     clean: all
   pool:
     vmImage: 'ubuntu-latest'
+  
+  variables:
+    - group: ffc-demo-web-acceptance-tests
+
   steps:
   - script: |
       # start web application
