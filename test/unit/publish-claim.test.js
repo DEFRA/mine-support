@@ -1,3 +1,4 @@
+process.env.COOKIE_PASSWORD = 'cookiepasswordcookiecookie'
 const mockSendEvent = jest.fn()
 jest.mock('ffc-protective-monitoring', () => {
   return {
