@@ -2,6 +2,7 @@ trigger: none
 
 jobs:
 - job: RunPerformanceTests
+  condition: eq(1,2)
   workspace:
     clean: all
   pool:
