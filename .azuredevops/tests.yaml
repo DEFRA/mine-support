@@ -88,7 +88,17 @@ jobs:
     - group: ffc-demo-web-acceptance-tests
 
   steps:
+
+  - task: NodeTool@0
+    displayName: 'Install Node.js v18'
+    inputs:
+      versionSpec: 'v18.x'
+      checkLatest: true 
+    enabled: true #this step takes long time to download nodejs file
+
   - script: |
+      nvm list
+      
       # start web application
       docker-compose up -d
       
