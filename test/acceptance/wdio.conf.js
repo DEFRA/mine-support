@@ -8,20 +8,34 @@ const maxInstances = process.env.MAX_INSTANCES ? Number(process.env.MAX_INSTANCE
 
 
 exports.config = {
-  hostname: 'selenium',
-  path: '/wd/hub',
+  //hostname: 'localhost',
+  hostname: 'selenium-hub',
+  port: 4444, 
+  path: '/',
   specs: ['./features/**/*.feature'],
   exclude: ['./scratch/**'],
-
-  maxInstances,
+  maxInstances: 5,
   capabilities: [
     {
-      maxInstances,
+      maxInstances: 1,
       acceptInsecureCerts: true,
       browserName: 'chrome',
       'goog:chromeOptions': {
-        args: chromeArgs
-      }
+        args: [
+          '--disable-infobars',
+          '--window-size=1280,800',
+          '--headless',
+          '--no-sandbox',
+          '--disable-gpu',
+          '--disable-setuid-sandbox',
+          '--disable-dev-shm-usage',
+        ],
+      },
+    },
+    {
+      maxInstances: 2,
+      browserName: 'MicrosoftEdge',
+      acceptInsecureCerts: true
     }
   ],
   // ===================
@@ -30,11 +44,14 @@ exports.config = {
   // Define all options that are relevant for the WebdriverIO instance here
   logLevel: 'warn',
   bail: 0,
-  baseUrl: envRoot +'/selenium:4444',
+  baseUrl: envRoot,
   waitforTimeout: 10000,
   connectionRetryTimeout: 90000,
   connectionRetryCount: 1,
-  services: ['selenium-standalone'],
+  //services: [],
+  services: ['docker'],
+  // services: ['selenium-standalone'],
+  // services:['chromedriver'],
   framework: 'cucumber',
   specFileRetries: 3,
   specFileRetriesDelay: 30,
