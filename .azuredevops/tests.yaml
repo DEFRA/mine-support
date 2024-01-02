@@ -1,8 +1,17 @@
+parameters:
+  - name: runPerformanceTests
+    type: boolean
+    default: false
+
+  - name: runAcceptanceTests
+    type: boolean
+    default: true
+
 trigger: none
 
 jobs:
 - job: RunPerformanceTests
-  condition: eq(1,2)
+  condition: eq(parameters.runPerformanceTests, 'true')
   workspace:
     clean: all
   pool:
@@ -80,6 +89,7 @@ jobs:
 
 
 - job: RunAcceptanceTests
+  condition: eq(parameters.runAcceptanceTests, 'true')
   workspace:
     clean: all
   pool:
@@ -100,6 +110,8 @@ jobs:
   - script: |
       nvm list
       
+      mkdir /home/node/html-reports/screenshots
+
       # start web application
       docker-compose up -d
       
