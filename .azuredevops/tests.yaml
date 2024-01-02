@@ -11,7 +11,7 @@ trigger: none
 
 jobs:
 - job: RunPerformanceTests
-  condition: eq(parameters.runPerformanceTests, 'true')
+  condition: ${{  eq(parameters.runPerformanceTests, 'true') }}
   workspace:
     clean: all
   pool:
@@ -89,7 +89,7 @@ jobs:
 
 
 - job: RunAcceptanceTests
-  condition: eq(parameters.runAcceptanceTests, 'true')
+  condition: ${{ eq(parameters.runAcceptanceTests, 'true') }}
   workspace:
     clean: all
   pool:
