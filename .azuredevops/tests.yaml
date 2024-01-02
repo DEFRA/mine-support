@@ -114,7 +114,7 @@ jobs:
       mkdir -p -m 777 $(System.DefaultWorkingDirectory)/test/acceptance/html-reports
 
       # start web application
-      docker-compose up -d
+      docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up --build -d
       
       # run acceptance
       cd test/acceptance
@@ -133,10 +133,12 @@ jobs:
       TargetFolder: '$(Build.ArtifactStagingDirectory)/acceptance-tests'
       OverWrite: true
       flattenFolders: false         
+    condition: always()    
 
   - task: PublishPipelineArtifact@1
     displayName: Publish Acceptance Test Report
     inputs:
       targetPath: $(Build.ArtifactStagingDirectory)/acceptance-tests
       artifact: $(build.buildid)-acceptance-results
+    condition: always()    
 
