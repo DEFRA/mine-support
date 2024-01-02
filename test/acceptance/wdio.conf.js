@@ -9,6 +9,7 @@ const maxInstances = process.env.MAX_INSTANCES ? Number(process.env.MAX_INSTANCE
 
 exports.config = {
   hostname: 'selenium',
+  port: 4444 ,
   path: '/wd/hub',
   specs: ['./features/**/*.feature'],
   exclude: ['./scratch/**'],
@@ -30,7 +31,7 @@ exports.config = {
   // Define all options that are relevant for the WebdriverIO instance here
   logLevel: 'warn',
   bail: 0,
-  baseUrl: envRoot +'/selenium:4444',
+  baseUrl: envRoot +'',
   waitforTimeout: 10000,
   connectionRetryTimeout: 90000,
   connectionRetryCount: 1,
