@@ -1,9 +1,11 @@
 parameters:
   - name: runPerformanceTests
+    displayName: Run Performance Tests
     type: boolean
     default: false
 
   - name: runAcceptanceTests
+    displayName: Run Acceptance Tests
     type: boolean
     default: true
 
