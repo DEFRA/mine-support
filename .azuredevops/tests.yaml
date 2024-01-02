@@ -112,7 +112,8 @@ jobs:
   - script: |
       nvm list
       
-      mkdir /home/node/html-reports/screenshots
+      mkdir -p -m 777 test-output
+      mkdir -p -m 777 html-reports
 
       # start web application
       docker-compose up -d
