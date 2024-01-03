@@ -16,4 +16,5 @@ services:
       - ./html-reports:/home/node/html-reports
     ports:
       - "9228:9229"
+    network_mode: "host"
 
