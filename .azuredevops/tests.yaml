@@ -145,7 +145,7 @@ jobs:
 
       curl http://localhost:3000
 
-      export TEST_ENVIRONMENT_ROOT_URL=https://ffc-demo-web.snd3.adp.defra.gov.uk
+      export TEST_ENVIRONMENT_ROOT_URL=http://localhost:3000
 
       # run acceptance
       cd test/acceptance
