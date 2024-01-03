@@ -15,6 +15,5 @@ services:
       - ./package.json:/home/node/package.json
       - ./html-reports:/home/node/html-reports
     ports:
-      - "9228:9229"
-    network_mode: "host"
+      - "9228:9229"      
 

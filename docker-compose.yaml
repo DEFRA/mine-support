@@ -20,4 +20,4 @@ services:
       GOOGLE_TAG_MANAGER_KEY: GTM-N5QK7RL
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    network_mode: "host"
+    
