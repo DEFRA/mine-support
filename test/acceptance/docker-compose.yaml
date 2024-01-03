@@ -7,7 +7,7 @@ services:
     depends_on:
       - selenium
     environment:
-      TEST_ENVIRONMENT_ROOT_URL: http://ffc-demo-web:3000
+      TEST_ENVIRONMENT_ROOT_URL: http://host.docker.internal:3000
       CHROME_ARGS: "--headless --ignore-certificate-errors"
     extra_hosts:
       - "host.docker.internal:host-gateway"
