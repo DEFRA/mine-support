@@ -13,8 +13,3 @@ services:
   selenium:
     image: selenium/standalone-chrome-debug
     container_name: chrome-browser
-
-networks:
-  default:
-    external:
-      name: ffc-demo
