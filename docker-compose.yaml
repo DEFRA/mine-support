@@ -18,3 +18,7 @@ services:
       PROTECTIVE_MONITORING_URL: ${PROTECTIVE_MONITORING_URL}
       REDIS_HOSTNAME: redis
       GOOGLE_TAG_MANAGER_KEY: GTM-N5QK7RL
+
+networks:
+  default:
+      name: ffc-demo

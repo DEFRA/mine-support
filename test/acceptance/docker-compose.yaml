@@ -7,10 +7,14 @@ services:
     depends_on:
       - selenium
     environment:
-      TEST_ENVIRONMENT_ROOT_URL: ${TEST_ENVIRONMENT_ROOT_URL}
+      TEST_ENVIRONMENT_ROOT_URL: ffc-demo-web:3000
       CHROME_ARGS: "--headless --ignore-certificate-errors"
   
   selenium:
     image: selenium/standalone-chrome-debug
     container_name: chrome-browser
 
+networks:
+  default:
+    external:
+      name: ffc-demo
