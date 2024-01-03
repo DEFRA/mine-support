@@ -148,7 +148,7 @@ jobs:
       # run acceptance
       cd test/acceptance
       #docker-compose run --service-ports --rm wdio-cucumber 
-      #docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run --service-ports --build --rm wdio-cucumber
+      docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run --service-ports --build --rm wdio-cucumber
       #docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up --build --abort-on-container-exit
     displayName: Run Acceptance Tests
 
