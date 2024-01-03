@@ -118,12 +118,12 @@ jobs:
       mkdir -p -m 777 $(System.DefaultWorkingDirectory)/test/acceptance/html-reports
 
       # start web application
-      docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up --build -d --service-ports
+      docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up --build -d
       
       # run acceptance
       cd test/acceptance
-      #docker-compose run --rm wdio-cucumber
-      docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up --build --service-ports --abort-on-container-exit
+      #docker-compose run --service-ports --rm wdio-cucumber 
+      docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run --service-ports --build --rm wdio-cucumber
     displayName: Run Acceptance Tests
 
   - powershell: Get-ChildItem -Path '$(System.DefaultWorkingDirectory)' -recurse
