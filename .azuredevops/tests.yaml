@@ -127,7 +127,7 @@ jobs:
   - script: |
   
       mkdir -p -m 777 $(System.DefaultWorkingDirectory)/test/acceptance/html-reports
-      mkdir -p -m 777 $(System.DefaultWorkingDirectory)/app/dist
+      chmod 777 $(System.DefaultWorkingDirectory)/app
 
       export MESSAGE_QUEUE_HOST=defra-demo-service.servicebus.windows.net
       export MESSAGE_QUEUE_PASSWORD=tvlWgSbxmxJufPkLy3im62+SIVUz5iBAS+ASbO3bT7E=
