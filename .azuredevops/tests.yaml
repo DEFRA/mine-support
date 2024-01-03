@@ -111,8 +111,8 @@ jobs:
   - bash: |
       echo '127.0.0.1 host.docker.internal' | sudo tee -a /etc/hosts    
     displayName: 'Update Hosts File'
-    enabled: false
-    
+    enabled: true
+
   - script: |
   
       mkdir -p -m 777 $(System.DefaultWorkingDirectory)/test/acceptance/html-reports
