@@ -107,20 +107,19 @@ jobs:
     inputs:
       versionSpec: 'v18.x'
       checkLatest: true 
-    enabled: true #this step takes long time to download nodejs file
+    enabled: false #this step takes long time to download nodejs file
 
   - script: |
-      nvm list
-      
-      mkdir -p -m 777 /home/node/test-output
-      mkdir -p -m 777 /home/node/html-reports/screenshots
-      
+  
+      mkdir -p -m 777 $(System.DefaultWorkingDirectory)/test/acceptance/html-reports
+
       # start web application
-      docker-compose up -d
+      docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up --build -d
       
       # run acceptance
       cd test/acceptance
-      docker-compose run --rm wdio-cucumber
+      #docker-compose run --rm wdio-cucumber
+      docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up --build --abort-on-container-exit
     displayName: Run Acceptance Tests
 
   - powershell: Get-ChildItem -Path '$(System.DefaultWorkingDirectory)' -recurse
@@ -134,10 +133,12 @@ jobs:
       TargetFolder: '$(Build.ArtifactStagingDirectory)/acceptance-tests'
       OverWrite: true
       flattenFolders: false         
+    condition: always()    
 
   - task: PublishPipelineArtifact@1
     displayName: Publish Acceptance Test Report
     inputs:
       targetPath: $(Build.ArtifactStagingDirectory)/acceptance-tests
       artifact: $(build.buildid)-acceptance-results
+    condition: always()    
 
