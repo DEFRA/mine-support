@@ -108,7 +108,11 @@ jobs:
       versionSpec: 'v18.x'
       checkLatest: true 
     enabled: false #this step takes long time to download nodejs file
-
+  - bash: |
+      echo '127.0.0.1 host.docker.internal' | sudo tee -a /etc/hosts    
+    displayName: 'Update Hosts File'
+    enabled: false
+    
   - script: |
   
       mkdir -p -m 777 $(System.DefaultWorkingDirectory)/test/acceptance/html-reports
