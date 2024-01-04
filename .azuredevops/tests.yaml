@@ -136,8 +136,11 @@ jobs:
 
       # start web application
       #docker-compose -f docker-compose.yaml up --build -d
+      #docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up --build -d
       #docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run --service-ports --build -d --rm ffc-demo-web
-      docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run -p 127.0.0.1:3000:3000 --build -d --rm ffc-demo-web 
+      #docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run -p 127.0.0.1:3000:3000 --build -d --rm ffc-demo-web 
+      docker-compose up -d
+
       echo '127.0.0.1 host.docker.internal' | sudo tee -a /etc/hosts
       curl http://host.docker.internal:3000/
 
@@ -145,15 +148,15 @@ jobs:
 
       curl http://localhost:3000/
 
-      curl http://ffc-demo-web:3000/
-
-      export TEST_ENVIRONMENT_ROOT_URL=http://127.0.0.1:3000
+      export TEST_ENVIRONMENT_ROOT_URL=http://localhost:3000
 
       # run acceptance
       cd test/acceptance
       #docker-compose run --service-ports --rm wdio-cucumber 
-      docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run --service-ports --build --rm wdio-cucumber
+      #docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run --service-ports --build --rm wdio-cucumber
+      #docker-compose -f ../../docker-compose.yaml -f docker-compose.yaml -f docker-compose.override.yaml up --build --abort-on-container-exit
       #docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up --build --abort-on-container-exit
+      docker-compose run --rm wdio-cucumber
     displayName: Run Acceptance Tests
 
   - powershell: Get-ChildItem -Path '$(System.DefaultWorkingDirectory)' -recurse
