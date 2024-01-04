@@ -5,11 +5,9 @@ const envRoot = (process.env.TEST_ENVIRONMENT_ROOT_URL || 'http://host.docker.in
 const chromeArgs = process.env.CHROME_ARGS ? process.env.CHROME_ARGS.split(' ') : []
 const maxInstances = process.env.MAX_INSTANCES ? Number(process.env.MAX_INSTANCES) : 5
 
-
-
 exports.config = {
   hostname: 'selenium',
-  port: 4444 ,
+  port: 4444,
   path: '/wd/hub',
   specs: ['./features/**/*.feature'],
   exclude: ['./scratch/**'],
@@ -31,7 +29,7 @@ exports.config = {
   // Define all options that are relevant for the WebdriverIO instance here
   logLevel: 'warn',
   bail: 0,
-  baseUrl: envRoot +'',
+  baseUrl: envRoot + '',
   waitforTimeout: 10000,
   connectionRetryTimeout: 90000,
   connectionRetryCount: 1,
@@ -82,7 +80,7 @@ exports.config = {
 
     reportAggregator.clean()
     global.reportAggregator = reportAggregator
-    
+
   },
 
   onComplete: function (exitCode, config, capabilities, results) {
