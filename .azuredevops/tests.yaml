@@ -170,8 +170,8 @@ jobs:
       htmlfile="$(Build.ArtifactStagingDirectory)/acceptance-tests/acceptance-test-suite-report.html" 
       mdfile="$(System.DefaultWorkingDirectory)/report.md" 
       cd $(System.DefaultWorkingDirectory)
-      curl https://github.com/jgm/pandoc/releases/download/3.1.11/pandoc-3.1.11-linux-amd64.tar.gz 
-      sudo dpkg -i pandoc-3.1.11-linux-amd64.tar.gz  
+      wget https://github.com/jgm/pandoc/releases/download/3.1.11/pandoc-3.1.11-1-amd64.deb
+      sudo dpkg -i pandoc-3.1.11-1-amd64.deb
       pandoc $htmlfile -o $mdfile 
 
       # show Extensions tab as text 
