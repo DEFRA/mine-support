@@ -169,11 +169,9 @@ jobs:
   - script: | 
       htmlfile="$(Build.ArtifactStagingDirectory)/acceptance-tests/acceptance-test-suite-report.html" 
       mdfile="$(System.DefaultWorkingDirectory)/report.md" 
-      cd $(System.DefaultWorkingDirectory)
-      curl https://github.com/jgm/pandoc/releases/download/3.1.11/pandoc-3.1.11-linux-amd64.tar.gz 
+      sudo dpkg -i https://github.com/jgm/pandoc/releases/download/3.1.11/pandoc-3.1.11-1-amd64.deb
 
-      tar zxvf $(System.DefaultWorkingDirectory)/pandoc-3.1.11-linux-amd64.tar.gz  
-      $(System.DefaultWorkingDirectory)/pandoc-3.1.11/bin/pandoc $htmlfile -o $mdfile 
+      pandoc $htmlfile -o $mdfile 
 
       # show Extensions tab as text 
       echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=HTML2MD;]$mdfile" 
