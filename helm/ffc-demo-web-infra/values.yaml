@@ -8,6 +8,9 @@ namespaceQueues:
   - name: claim3
     roleAssignments:
       - roleName: 'QueueSender'      
+  - name: claim4
+    roleAssignments:
+      - roleName: 'QueueSender'     
 
 namespaceTopics:
   - name: claim-notify
