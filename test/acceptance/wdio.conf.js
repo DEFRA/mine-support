@@ -1,17 +1,16 @@
-const browserstack = require('browserstack-local')
 const { ReportAggregator, HtmlReporter } = require('@rpii/wdio-html-reporter')
 const log4js = require('@log4js-node/log4js-api')
 const logger = log4js.getLogger('default')
 const envRoot = (process.env.TEST_ENVIRONMENT_ROOT_URL || 'http://host.docker.internal:3000')
 const chromeArgs = process.env.CHROME_ARGS ? process.env.CHROME_ARGS.split(' ') : []
 const maxInstances = process.env.MAX_INSTANCES ? Number(process.env.MAX_INSTANCES) : 5
-const user = process.env.BROWSERSTACK_USERNAME
-const key = process.env.BROWSERSTACK_ACCESS_KEY
+
+
 
 exports.config = {
-  hostname: 'hub-cloud.browserstack.com',
-  user,
-  key,
+  hostname: 'selenium',
+  port: 4444 ,
+  path: '/wd/hub',
   specs: ['./features/**/*.feature'],
   exclude: ['./scratch/**'],
 
@@ -21,42 +20,9 @@ exports.config = {
       maxInstances,
       acceptInsecureCerts: true,
       browserName: 'chrome',
-      'browserstack.local': true,
-      'browserstack.networkLogs': true,
-      'browserstack.acceptSslCerts': true,
       'goog:chromeOptions': {
         args: chromeArgs
       }
-    },
-    {
-      os: 'Windows',
-      osVersion: '10',
-      browserName: 'Firefox',
-      browserVersion: 'latest',
-      'browserstack.local': true,
-      acceptInsecureCerts: true,
-      acceptSslCerts: true
-    },
-    {
-      os: 'OS X',
-      osVersion: 'Big Sur',
-      browserName: 'Safari',
-      browserVersion: 'latest',
-      'browserstack.local': true,
-      acceptInsecureCerts: true,
-      acceptSslCerts: true
-    },
-
-    {
-      // Windows IE 11
-      os: 'Windows',
-      osVersion: '10',
-      browserName: 'IE',
-      browserVersion: '11',
-      resolution: '1024x768',
-      'browserstack.local': true,
-      acceptInsecureCerts: true,
-      acceptSslCerts: true
     }
   ],
   // ===================
@@ -65,13 +31,13 @@ exports.config = {
   // Define all options that are relevant for the WebdriverIO instance here
   logLevel: 'warn',
   bail: 0,
-  baseUrl: envRoot,
+  baseUrl: envRoot +'',
   waitforTimeout: 10000,
   connectionRetryTimeout: 90000,
   connectionRetryCount: 1,
-  services: ['browserstack'],
+  services: ['selenium-standalone'],
   framework: 'cucumber',
-  specFileRetries: 2,
+  specFileRetries: 3,
   specFileRetriesDelay: 30,
   reporters: ['spec',
     [HtmlReporter, {
@@ -105,36 +71,24 @@ exports.config = {
   // Hooks
   // =====
   onPrepare: function (config, capabilities) {
+    console.log(`Running tests against ${envRoot}\n`)
+
     const reportAggregator = new ReportAggregator({
       outputDir: './html-reports/',
       filename: 'acceptance-test-suite-report.html',
       reportTitle: 'Acceptance Tests Report',
       browserName: capabilities.browserName
     })
+
     reportAggregator.clean()
     global.reportAggregator = reportAggregator
-    console.log('Connecting local')
-    return new Promise(function (resolve, reject) {
-      exports.bs_local = new browserstack.Local()
-      const bsLocalArgs = {
-        key,
-        verbose: 'true',
-        onlyAutomate: 'true'
-      }
-      exports.bs_local.start(bsLocalArgs, function (error) {
-        if (error) return reject(error)
-        console.log('Connected. Now testing...')
-        resolve()
-      })
-    })
+    
   },
 
   onComplete: function (exitCode, config, capabilities, results) {
     (async () => {
       await global.reportAggregator.createReport()
     })()
-    exports.bs_local.stop()
-    console.log('Testing complete, binary closed')
   },
 
   beforeSession: function () {
