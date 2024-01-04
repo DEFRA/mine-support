@@ -166,3 +166,8 @@ jobs:
       artifact: $(build.buildid)-acceptance-results
     condition: always()    
 
+  - script: | 
+      htmlfile="$(Build.ArtifactStagingDirectory)/acceptance-tests/acceptance-test-suite-report.html" 
+
+      # show Extensions tab as text 
+      echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=HTML2MD;]$htmlfile" 
