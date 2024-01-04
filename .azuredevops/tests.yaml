@@ -128,6 +128,8 @@ jobs:
   
       sudo mkdir -p -m 777 $(System.DefaultWorkingDirectory)/test/acceptance/html-reports
       sudo chmod -R 777 $(System.DefaultWorkingDirectory)/app
+      IP_ADDRESS=$(ip addr show | grep "\binet\b.*\bdocker0\b" | awk '{print $2}' | cut -d '/' -f 1)
+      echo ${IP_ADDRESS}
 
       export MESSAGE_QUEUE_HOST=defra-demo-service.servicebus.windows.net
       export MESSAGE_QUEUE_PASSWORD=tvlWgSbxmxJufPkLy3im62+SIVUz5iBAS+ASbO3bT7E=
@@ -135,24 +137,16 @@ jobs:
       export CLAIM_QUEUE_ADDRESS=ffc-demo-claim
 
       # start web application
-      #docker-compose -f docker-compose.yaml up --build -d
-      #docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up --build -d
       docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run --service-ports --build -d --rm ffc-demo-web
-      #docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run -p 127.0.0.1:3000:3000 --build -d --rm ffc-demo-web 
-      #docker-compose up -d
-
-      IP_ADDRESS=$(ip addr show | grep "\binet\b.*\bdocker0\b" | awk '{print $2}' | cut -d '/' -f 1)
-      echo ${IP_ADDRESS}
+      #docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run -p 127.0.0.1:3000:3000 --build -d --rm ffc-demo-web       
 
       export TEST_ENVIRONMENT_ROOT_URL=http://${IP_ADDRESS}:3000
-
+      
       # run acceptance
       cd test/acceptance
       #docker-compose run --service-ports --rm wdio-cucumber 
       #docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run --service-ports --build --rm wdio-cucumber
-      #docker-compose -f ../../docker-compose.yaml -f docker-compose.yaml -f docker-compose.override.yaml up --build --abort-on-container-exit
-      docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up --build --abort-on-container-exit
-      #docker-compose run --rm wdio-cucumber
+      docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up --build --abort-on-container-exit      
     displayName: Run Acceptance Tests
 
   - powershell: Get-ChildItem -Path '$(System.DefaultWorkingDirectory)' -recurse
