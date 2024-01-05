@@ -173,15 +173,16 @@ jobs:
       export CLAIM_QUEUE_ADDRESS=ffc-demo-claim
 
       # start web application
-      docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run --service-ports --build -d --rm ffc-demo-web     
+      docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run --service-ports --build -d --rm ffc-demo-web 
+          
       echo '127.0.0.1 host.docker.internal' | sudo tee -a /etc/hosts
       export TEST_ENVIRONMENT_ROOT_URL=http://${IP_ADDRESS}:3000
       
       # run acceptance
       cd test/acceptance
-      docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run --service-ports --build --rm wdio-cucumber
+      #docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run --service-ports --build --rm wdio-cucumber
       #docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run --build --rm wdio-cucumber   
-      #docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up --build --abort-on-container-exit   
+      docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up --build --abort-on-container-exit   
     displayName: Run Acceptance Tests
 
   - powershell: Get-ChildItem -Path '$(System.DefaultWorkingDirectory)' -recurse
