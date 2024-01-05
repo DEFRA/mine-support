@@ -48,7 +48,12 @@ jobs:
       # show Extensions tab as text 
       echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=ZapReport;]$mdfile" 
       echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=ZapReportHtml;]$htmlfile" 
-
+  - task: PublishPipelineArtifact@1
+    displayName: Publish  Test Report
+    inputs:
+      targetPath: $(Build.ArtifactStagingDirectory)/test-output
+      artifact: $(build.buildid)-zap-results
+    condition: always() 
 - job: RunAxeTests
   condition: ${{  eq(parameters.runAxeTests, 'true') }}
   workspace:
@@ -73,6 +78,13 @@ jobs:
       # show Extensions tab as text 
       echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=AXEReport;]$mdfile" 
       echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=AXEReportJSON;]$htmlfile" 
+  - powershell: Get-ChildItem -Path '$(System.DefaultWorkingDirectory)/test-output' -recurse | select Name
+  - task: PublishPipelineArtifact@1
+    displayName: Publish  Test Report
+    inputs:
+      targetPath: $(Build.ArtifactStagingDirectory)/test-output/axe
+      artifact: $(build.buildid)-axe-results
+    condition: always() 
 
 - job: RunPerformanceTests
   condition: ${{  eq(parameters.runPerformanceTests, 'true') }}
@@ -97,7 +109,7 @@ jobs:
       JMETER_RESULTS=$(System.DefaultWorkingDirectory)/test-output/performance/testresults.jtl
       JUNIT_RESULTS=$(System.DefaultWorkingDirectory)/test-output/performance/testresults.xml
       python3 $(System.DefaultWorkingDirectory)/.azuredevops/scripts/jtl_junit_converter.py $JMETER_RESULTS $JUNIT_RESULTS
-    workingDirectory: '$(Build.ArtifactStagingDirectory)/perf-tests'
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
     displayName: 'Convert JMeter Results to JUnit Format'
 
   - task: PublishTestResults@2
