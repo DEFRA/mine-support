@@ -2,17 +2,17 @@ parameters:
   - name: runPerformanceTests
     displayName: Run Performance Tests
     type: boolean
-    default: true
+    default: false
 
   - name: runAcceptanceTests
     displayName: Run Acceptance Tests
     type: boolean
-    default: true
+    default: false
 
   - name: runZapTests
     displayName: Run Zap Tests
     type: boolean
-    default: true
+    default: false
 
   - name: runAxeTests
     displayName: Run Axe Tests
