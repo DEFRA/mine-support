@@ -145,7 +145,7 @@ jobs:
   - bash: |
       echo '127.0.0.1 host.docker.internal' | sudo tee -a /etc/hosts    
     displayName: 'Update Hosts File'
-    enabled: false
+    enabled: true
 
   - bash: |
       docker-compose --version
