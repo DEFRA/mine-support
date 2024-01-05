@@ -1,3 +1,4 @@
+process.env.COOKIE_PASSWORD = 'cookie_password_cookie_password'
 const cookies = require('../../app/cookies')
 let request
 let h

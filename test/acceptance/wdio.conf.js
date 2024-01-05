@@ -29,7 +29,7 @@ exports.config = {
   // Define all options that are relevant for the WebdriverIO instance here
   logLevel: 'warn',
   bail: 0,
-  baseUrl: envRoot,
+  baseUrl: envRoot + '',
   waitforTimeout: 10000,
   connectionRetryTimeout: 90000,
   connectionRetryCount: 1,
@@ -70,17 +70,14 @@ exports.config = {
   // =====
   onPrepare: function (config, capabilities) {
     console.log(`Running tests against ${envRoot}\n`)
-
     const reportAggregator = new ReportAggregator({
       outputDir: './html-reports/',
       filename: 'acceptance-test-suite-report.html',
       reportTitle: 'Acceptance Tests Report',
       browserName: capabilities.browserName
     })
-
     reportAggregator.clean()
     global.reportAggregator = reportAggregator
-
   },
 
   onComplete: function (exitCode, config, capabilities, results) {
