@@ -7,11 +7,67 @@ parameters:
   - name: runAcceptanceTests
     displayName: Run Acceptance Tests
     type: boolean
+    default: false
+
+  - name: runZapTests
+    displayName: Run Zap Tests
+    type: boolean
     default: true
 
-trigger: none
+  - name: runAxeTests
+    displayName: Run Axe Tests
+    type: boolean
+    default: false
+
+trigger: "*"
 
 jobs:
+
+- job: RunZapTests
+  condition: ${{  eq(parameters.runZapTests, 'true') }}
+  workspace:
+    clean: all
+  pool:
+    vmImage: 'ubuntu-latest'  
+  steps:
+  - script: |
+      docker-compose -f docker-compose.yaml -f docker-compose.zap.yaml run --rm zap-baseline-scan
+    displayName: Run Zap Tests
+  - script: | 
+      htmlfile="$(Build.ArtifactStagingDirectory)/test-output/zap-report.html" 
+      mdfile="$(System.DefaultWorkingDirectory)/zap-report.md" 
+      cd $(System.DefaultWorkingDirectory)
+      wget https://github.com/jgm/pandoc/releases/download/3.1.11/pandoc-3.1.11-1-amd64.deb
+      sudo dpkg -i pandoc-3.1.11-1-amd64.deb
+      pandoc $htmlfile -o $mdfile 
+
+      # show Extensions tab as text 
+      echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=ZapReport;]$mdfile" 
+      echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=ZapReportHtml;]$htmlfile" 
+
+- job: RunAxeTests
+  condition: ${{  eq(parameters.runAxeTests, 'true') }}
+  workspace:
+    clean: all
+  pool:
+    vmImage: 'ubuntu-latest'  
+  variables:
+    - group: ffc-demo-web-acceptance-tests
+  steps:
+  - script: |
+      docker-compose -f docker-compose.yaml -f docker-compose.axe.yaml run --rm axe
+    displayName: Run Axe Tests
+  - script: | 
+      htmlfile="$(Build.ArtifactStagingDirectory)/test-output/zap-report.html" 
+      mdfile="$(System.DefaultWorkingDirectory)/zap-report.md" 
+      cd $(System.DefaultWorkingDirectory)
+      wget https://github.com/jgm/pandoc/releases/download/3.1.11/pandoc-3.1.11-1-amd64.deb
+      sudo dpkg -i pandoc-3.1.11-1-amd64.deb
+      pandoc $htmlfile -o $mdfile 
+
+      # show Extensions tab as text 
+      echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=ZapReport;]$mdfile" 
+
 - job: RunPerformanceTests
   condition: ${{  eq(parameters.runPerformanceTests, 'true') }}
   workspace:
@@ -20,53 +76,20 @@ jobs:
     vmImage: 'ubuntu-latest'  
   steps:
   - script: |
+      sudo mkdir -p -m 777 $(System.DefaultWorkingDirectory)/test-output/performance
       cd test/performance
       docker-compose -f ../../docker-compose.yaml -f docker-compose.jmeter.yaml run jmeter-test
     displayName: Run Performance Tests
 
-  # - task: CmdLine@2
-  #   inputs:
-  #     script: |
-  #       echo "Structure of work folder of this pipeline:"
-  #       tree $(Agent.WorkFolder)/1
-  #       echo "Build.ArtifactStagingDirectory:" 
-  #       echo "$(Build.ArtifactStagingDirectory)"
-  #       echo "Build.BinariesDirectory:" 
-  #       echo "$(Build.BinariesDirectory)"
-  #       echo "Build.SourcesDirectory:"
-  #       echo "$(Build.SourcesDirectory)"
-
-  # - powershell: Get-ChildItem -Path '$(System.DefaultWorkingDirectory)' -recurse
-
-  # - powershell: Get-ChildItem -Path '$(Agent.WorkFolder)' -recurse
-
-  - task: CopyFiles@2
-    displayName: Copy JMeter HTML Report
-    inputs:
-      SourceFolder: '$(System.DefaultWorkingDirectory)/test-output/htmlreport'
-      TargetFolder: '$(Build.ArtifactStagingDirectory)/perf-tests'
-      OverWrite: true
-      flattenFolders: false
-
-  - task: CopyFiles@2
-    displayName: Copy JMeter Results (testresults.jtl)
-    inputs:
-      SourceFolder: '$(System.DefaultWorkingDirectory)/test/performance'
-      Contents: |
-        testresults.jtl
-      TargetFolder: '$(Build.ArtifactStagingDirectory)/perf-tests'
-      OverWrite: false
-      flattenFolders: true           
-
   - task: PublishPipelineArtifact@1
     displayName: Publish Performance Test Report
     inputs:
-      targetPath: $(Build.ArtifactStagingDirectory)/perf-tests
+      targetPath: $(System.DefaultWorkingDirectory)/test-output/performance
       artifact: $(build.buildid)-perf-results
 
   - script: |
-      JMETER_RESULTS=testresults.jtl
-      JUNIT_RESULTS=testresults.xml
+      JMETER_RESULTS=$(System.DefaultWorkingDirectory)/test-output/performance/testresults.jtl
+      JUNIT_RESULTS=$(System.DefaultWorkingDirectory)/test-output/performance/testresults.xml
       python3 $(System.DefaultWorkingDirectory)/.azuredevops/scripts/jtl_junit_converter.py $JMETER_RESULTS $JUNIT_RESULTS
     workingDirectory: '$(Build.ArtifactStagingDirectory)/perf-tests'
     displayName: 'Convert JMeter Results to JUnit Format'
@@ -75,13 +98,9 @@ jobs:
     inputs:
       testResultsFormat: 'JUnit'
       testRunTitle: 'FFC Demo Tests'
-      testResultsFiles: '$(Build.ArtifactStagingDirectory)/perf-tests/testresults.xml'
+      testResultsFiles: '$(System.DefaultWorkingDirectory)/test-output/performance/testresults.xml'
       failTaskOnFailedTests: true
     displayName: 'Publish Load Testing Results'
-  
-  # - task: DownloadPipelineArtifact@0
-  #   inputs:
-  #     artifactName: $(build.buildid)-perf-results
 
   # - task: LakshayKaushik.PublishHTMLReports.publishhtmlreport.publishhtmlreport@1
   #   displayName: Publish Html Report
@@ -102,12 +121,6 @@ jobs:
 
   steps:
 
-  - task: NodeTool@0
-    displayName: 'Install Node.js v18'
-    inputs:
-      versionSpec: 'v18.x'
-      checkLatest: true 
-    enabled: false #this step takes long time to download nodejs file
   - bash: |
       echo '127.0.0.1 host.docker.internal' | sudo tee -a /etc/hosts    
     displayName: 'Update Hosts File'
@@ -125,16 +138,10 @@ jobs:
     enabled: true
 
   - script: |
-  
       sudo mkdir -p -m 777 $(System.DefaultWorkingDirectory)/test/acceptance/html-reports
       sudo chmod -R 777 $(System.DefaultWorkingDirectory)/app
       IP_ADDRESS=$(ip addr show | grep "\binet\b.*\bdocker0\b" | awk '{print $2}' | cut -d '/' -f 1)
       echo ${IP_ADDRESS}
-
-      export MESSAGE_QUEUE_HOST=defra-demo-service.servicebus.windows.net
-      export MESSAGE_QUEUE_PASSWORD=tvlWgSbxmxJufPkLy3im62+SIVUz5iBAS+ASbO3bT7E=
-      export MESSAGE_QUEUE_USER=RootManageSharedAccessKey
-      export CLAIM_QUEUE_ADDRESS=ffc-demo-claim
 
       # start web application
       docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run --service-ports --build -d --rm ffc-demo-web     
