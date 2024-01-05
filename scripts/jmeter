@@ -9,7 +9,7 @@ cd "${projectRoot}"
 docker-compose down
 
 docker-compose up -d
-
+mkdir "${projectRoot}/test-output/performance/htmlreport"
 cd "${projectRoot}/test/performance"
 
 # Run jmeter test
