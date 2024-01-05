@@ -7,7 +7,7 @@ parameters:
   - name: runAcceptanceTests
     displayName: Run Acceptance Tests
     type: boolean
-    default: false
+    default: true
 
   - name: runZapTests
     displayName: Run Zap Tests
@@ -17,7 +17,7 @@ parameters:
   - name: runAxeTests
     displayName: Run Axe Tests
     type: boolean
-    default: true
+    default: false
 
 trigger:
   batch: true
@@ -163,6 +163,11 @@ jobs:
       sudo chmod -R 777 $(System.DefaultWorkingDirectory)/app
       IP_ADDRESS=$(ip addr show | grep "\binet\b.*\bdocker0\b" | awk '{print $2}' | cut -d '/' -f 1)
       echo ${IP_ADDRESS}
+
+      export MESSAGE_QUEUE_HOST=defra-demo-service.servicebus.windows.net
+      export MESSAGE_QUEUE_PASSWORD=tvlWgSbxmxJufPkLy3im62+SIVUz5iBAS+ASbO3bT7E=
+      export MESSAGE_QUEUE_USER=RootManageSharedAccessKey
+      export CLAIM_QUEUE_ADDRESS=ffc-demo-claim
 
       # start web application
       docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run --service-ports --build -d --rm ffc-demo-web     

@@ -29,7 +29,7 @@ exports.config = {
   // Define all options that are relevant for the WebdriverIO instance here
   logLevel: 'warn',
   bail: 0,
-  baseUrl: envRoot + '',
+  baseUrl: envRoot,
   waitforTimeout: 10000,
   connectionRetryTimeout: 90000,
   connectionRetryCount: 1,
