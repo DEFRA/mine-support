@@ -19,7 +19,11 @@ parameters:
     type: boolean
     default: false
 
-trigger: "*"
+trigger:
+  batch: true
+  branches:
+    include:
+      - "*"
 
 jobs:
 
