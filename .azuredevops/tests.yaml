@@ -145,7 +145,7 @@ jobs:
   - bash: |
       echo '127.0.0.1 host.docker.internal' | sudo tee -a /etc/hosts    
     displayName: 'Update Hosts File'
-    enabled: true
+    enabled: false
 
   - bash: |
       docker-compose --version
@@ -161,6 +161,9 @@ jobs:
   - script: |
       sudo mkdir -p -m 777 $(System.DefaultWorkingDirectory)/test/acceptance/html-reports
       #sudo chmod -R 777 $(System.DefaultWorkingDirectory)/app
+
+      
+
       IP_ADDRESS=$(ip addr show | grep "\binet\b.*\bdocker0\b" | awk '{print $2}' | cut -d '/' -f 1)
       echo ${IP_ADDRESS}
 
@@ -171,12 +174,14 @@ jobs:
 
       # start web application
       docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run --service-ports --build -d --rm ffc-demo-web     
-
+      echo '127.0.0.1 host.docker.internal' | sudo tee -a /etc/hosts
       export TEST_ENVIRONMENT_ROOT_URL=http://${IP_ADDRESS}:3000
       
       # run acceptance
       cd test/acceptance
-      docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run --build --rm wdio-cucumber      
+      docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run --service-ports --build --rm wdio-cucumber
+      #docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run --build --rm wdio-cucumber   
+      #docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up --build --abort-on-container-exit   
     displayName: Run Acceptance Tests
 
   - powershell: Get-ChildItem -Path '$(System.DefaultWorkingDirectory)' -recurse
