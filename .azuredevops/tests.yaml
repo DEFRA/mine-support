@@ -35,6 +35,8 @@ jobs:
     vmImage: 'ubuntu-latest'  
   steps:
   - script: |
+      sudo mkdir -p -m 777 $(System.DefaultWorkingDirectory)/test-output
+      sudo mkdir -p -m 777 $(System.DefaultWorkingDirectory)/test-output/axe
       docker-compose -f docker-compose.yaml -f docker-compose.zap.yaml run --rm zap-baseline-scan
     displayName: Run Zap Tests
   - script: | 
@@ -64,6 +66,7 @@ jobs:
     - group: ffc-demo-web-acceptance-tests
   steps:
   - script: |
+      sudo mkdir -p -m 777 $(System.DefaultWorkingDirectory)/test-output
       sudo mkdir -p -m 777 $(System.DefaultWorkingDirectory)/test-output/axe
       docker-compose -f docker-compose.yaml -f docker-compose.axe.yaml run --rm axe
     displayName: Run Axe Tests
@@ -94,6 +97,7 @@ jobs:
     vmImage: 'ubuntu-latest'  
   steps:
   - script: |
+      sudo mkdir -p -m 777 $(System.DefaultWorkingDirectory)/test-output
       sudo mkdir -p -m 777 $(System.DefaultWorkingDirectory)/test-output/performance
       cd test/performance
       docker-compose -f ../../docker-compose.yaml -f docker-compose.jmeter.yaml run jmeter-test
