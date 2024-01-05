@@ -38,7 +38,7 @@ jobs:
       docker-compose -f docker-compose.yaml -f docker-compose.zap.yaml run --rm zap-baseline-scan
     displayName: Run Zap Tests
   - script: | 
-      htmlfile="$(Build.ArtifactStagingDirectory)/test-output/zap-report.html" 
+      htmlfile="$(System.DefaultWorkingDirectory)/test-output/zap-report.html" 
       mdfile="$(System.DefaultWorkingDirectory)/zap-report.md" 
       cd $(System.DefaultWorkingDirectory)
       wget https://github.com/jgm/pandoc/releases/download/3.1.11/pandoc-3.1.11-1-amd64.deb
@@ -59,18 +59,20 @@ jobs:
     - group: ffc-demo-web-acceptance-tests
   steps:
   - script: |
+      sudo mkdir -p -m 777 $(System.DefaultWorkingDirectory)/test-output/axe
       docker-compose -f docker-compose.yaml -f docker-compose.axe.yaml run --rm axe
     displayName: Run Axe Tests
   - script: | 
-      htmlfile="$(Build.ArtifactStagingDirectory)/test-output/zap-report.html" 
-      mdfile="$(System.DefaultWorkingDirectory)/zap-report.md" 
+      htmlfile="$(System.DefaultWorkingDirectory)/test-output/axe/axe.json" 
+      mdfile="$(System.DefaultWorkingDirectory)/test-output/axe/axe.md" 
       cd $(System.DefaultWorkingDirectory)
       wget https://github.com/jgm/pandoc/releases/download/3.1.11/pandoc-3.1.11-1-amd64.deb
       sudo dpkg -i pandoc-3.1.11-1-amd64.deb
       pandoc $htmlfile -o $mdfile 
 
       # show Extensions tab as text 
-      echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=ZapReport;]$mdfile" 
+      echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=AXEReport;]$mdfile" 
+      echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=AXEReportJSON;]$htmlfile" 
 
 - job: RunPerformanceTests
   condition: ${{  eq(parameters.runPerformanceTests, 'true') }}
