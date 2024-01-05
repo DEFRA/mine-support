@@ -9,7 +9,8 @@ services:
     environment:
       TEST_ENVIRONMENT_ROOT_URL: ${TEST_ENVIRONMENT_ROOT_URL}
       CHROME_ARGS: "--headless --ignore-certificate-errors"
-
+    extra_hosts:
+          - "host.docker.internal:host-gateway"
   selenium:
     image: selenium/standalone-chrome-debug
     container_name: chrome-browser
