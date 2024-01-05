@@ -55,8 +55,10 @@ jobs:
       targetPath: $(System.DefaultWorkingDirectory)/test-output
       artifact: $(build.buildid)-zap-results
     condition: always() 
+
 - job: RunAxeTests
   condition: ${{  eq(parameters.runAxeTests, 'true') }}
+  dependsOn: RunZapTests
   workspace:
     clean: all
   pool:
@@ -83,6 +85,7 @@ jobs:
     condition: always() 
 
 - job: RunPerformanceTests
+  dependsOn: RunAxeTests
   condition: ${{  eq(parameters.runPerformanceTests, 'true') }}
   workspace:
     clean: all
@@ -127,6 +130,7 @@ jobs:
 
 
 - job: RunAcceptanceTests
+  dependsOn: RunPerformanceTests
   condition: ${{ eq(parameters.runAcceptanceTests, 'true') }}
   workspace:
     clean: all
