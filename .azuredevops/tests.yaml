@@ -135,7 +135,7 @@ jobs:
   workspace:
     clean: all
   pool:
-    vmImage: 'ubuntu-latest'
+    name: 'DEFRA-ADP-SND1-ubuntu2204'
   
   variables:
     - group: ffc-demo-web-acceptance-tests
@@ -186,12 +186,12 @@ jobs:
   - task: PublishPipelineArtifact@1
     displayName: Publish Acceptance Test Report
     inputs:
-      targetPath: $(System.DefaultWorkingDirectory)/acceptance-tests
+      targetPath: $(System.DefaultWorkingDirectory)/)/test/acceptance/html-reports
       artifact: $(build.buildid)-acceptance-results
     condition: always()    
 
   - script: | 
-      htmlfile="$(System.DefaultWorkingDirectory)/acceptance-tests/acceptance-test-suite-report.html" 
+      htmlfile="$(System.DefaultWorkingDirectory)/)/test/acceptance/html-reports/acceptance-test-suite-report.html" 
       mdfile="$(System.DefaultWorkingDirectory)/report.md" 
       cd $(System.DefaultWorkingDirectory)
       wget https://github.com/jgm/pandoc/releases/download/3.1.11/pandoc-3.1.11-1-amd64.deb
