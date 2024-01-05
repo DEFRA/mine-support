@@ -135,7 +135,8 @@ jobs:
   workspace:
     clean: all
   pool:
-    name: 'DEFRA-ADP-SND1-ubuntu2204'
+    #name: 'DEFRA-ADP-SND1-ubuntu2204'
+    vmImage: 'ubuntu-latest'
   
   variables:
     - group: ffc-demo-web-acceptance-tests
