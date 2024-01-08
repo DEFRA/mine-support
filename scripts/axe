@@ -7,4 +7,4 @@ cd "${projectRoot}"
 # Guarantee clean environment
 docker-compose -f docker-compose.yaml -f docker-compose.axe.yaml -p ffc-demo-web-axe-test down -v
 # Run AXE test
-docker-compose -f docker-compose.yaml -f docker-compose.axe.yaml run --rm axe
+docker-compose -f docker-compose.yaml -f docker-compose.override.yaml -f docker-compose.axe.yaml run --rm axe
