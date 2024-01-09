@@ -163,8 +163,6 @@ jobs:
       sudo mkdir -p -m 777 $(System.DefaultWorkingDirectory)/test/acceptance/html-reports
       #sudo chmod -R 777 $(System.DefaultWorkingDirectory)/app
 
-      
-
       IP_ADDRESS=$(ip addr show | grep "\binet\b.*\bdocker0\b" | awk '{print $2}' | cut -d '/' -f 1)
       echo ${IP_ADDRESS}
 
@@ -174,11 +172,11 @@ jobs:
       export CLAIM_QUEUE_ADDRESS=ffc-demo-claim
 
       # start web application
-      docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run --service-ports --build -d --rm ffc-demo-web 
+      #docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run --service-ports --build -d --rm ffc-demo-web 
           
       echo '127.0.0.1 host.docker.internal' | sudo tee -a /etc/hosts
-      export TEST_ENVIRONMENT_ROOT_URL=http://${IP_ADDRESS}:3000
-      
+      #export TEST_ENVIRONMENT_ROOT_URL=http://${IP_ADDRESS}:3000
+      export TEST_ENVIRONMENT_ROOT_URL="https://ffc-demo-web.snd3.adp.defra.gov.uk"
       # run acceptance
       cd test/acceptance
       #docker-compose -f docker-compose.yaml -f docker-compose.override.yaml run --service-ports --build --rm wdio-cucumber
