@@ -12,5 +12,5 @@ services:
     extra_hosts:
           - "host.docker.internal:host-gateway"
   selenium:
-    image: selenium/standalone-chrome
+    image: selenium/standalone-chrome-debug
     container_name: chrome-browser
