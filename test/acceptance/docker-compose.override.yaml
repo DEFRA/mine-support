@@ -3,7 +3,7 @@ services:
   wdio-cucumber:
     environment:
       MAX_INSTANCES: 1
-      CHROME_ARGS: "--verbose"
+      CHROME_ARGS: "--headless --ignore-certificate-errors --verbose"
     volumes:
       - ./features:/home/node/features
       - ./pageobjects:/home/node/pageobjects
