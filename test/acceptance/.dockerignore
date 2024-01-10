@@ -9,3 +9,4 @@ Dockerfile
 .snyk
 .pre-commit-config.yaml
 .dockerignore
+html-reports

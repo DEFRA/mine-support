@@ -13,6 +13,6 @@ services:
       - ./babel.config.js:/home/node/babel.config.js
       - ./wdio.conf.js:/home/node/wdio.conf.js
       - ./package.json:/home/node/package.json
-      - ../../test-output/acceptancetest:/home/node/html-reports
+      - ./html-reports:/home/node/html-reports
     ports:
       - "9228:9229"
