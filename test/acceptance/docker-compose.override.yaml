@@ -10,7 +10,6 @@ services:
       - ./scratch:/home/node/scratch
       - ./steps:/home/node/steps
       - ./support:/home/node/support
-      - ./utils:/home/node/utils
       - ./babel.config.js:/home/node/babel.config.js
       - ./wdio.conf.js:/home/node/wdio.conf.js
       - ./package.json:/home/node/package.json
