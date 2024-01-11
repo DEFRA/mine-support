@@ -87,10 +87,10 @@ exports.config = {
   },
 
   beforeSession: function () {
-    const chai = require('chai')
-    global.expect = chai.expect
-    global.assert = chai.assert
-    global.should = chai.should()
+    // const chai = require('chai')
+    // global.expect = expect
+    // global.assert = assert
+    // global.should = should()
   },
 
   afterStep: function (featureName, feature, result, ctx) {
