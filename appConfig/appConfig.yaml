@@ -1,0 +1,16 @@
+- key: NODE_ENV
+  value: "production"
+- key: PORT
+  value: "3000"
+- key: REST_CLIENT_TIMEOUT_IN_MILLIS
+  value: "20000"
+- key: STATIC_CACHE_TIMEOUT_IN_MILLIS
+  value: "54000"  
+- key: APPINSIGHTS_CLOUDROLE
+  value: "{{serviceName}}"  
+- key: CLAIM_QUEUE_ADDRESS
+  value: "ffc-demo-claim"      
+- key: REDIS_PORT
+  value: "6380"        
+- key: REDIS_PARTITION
+  value: "ffc-demo"  

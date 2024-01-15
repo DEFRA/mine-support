@@ -1,0 +1,17 @@
+- key: MESSAGE_QUEUE_HOST
+  value: "SNDADPINFSB3401.servicebus.windows.net"  
+- key: REDIS_HOSTNAME
+  value: "SNDADPINFRD3401.redis.cache.windows.net"            
+- key: GOOGLE_TAG_MANAGER_KEY
+  value: "GTM-N5QK7RL"        
+- key: COOKIE_PASSWORD
+  value: "{{servicename}}-COOKIE-PASSWORD" 
+  type: "keyvault"
+- key: REDIS_PASSWORD
+  value: "{{servicename}}-REDIS-PASSWORD" 
+  type: "keyvault"
+- key: APPINSIGHTS_CONNECTIONSTRING
+  value: "{{servicename}}-APPINSIGHTS-CONNECTIONSTRING" 
+  type: "keyvault"
+- key: FONT_COLOR
+  value: "red"  

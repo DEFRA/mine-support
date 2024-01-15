@@ -53,7 +53,8 @@ extends:
       testFilePath: "./docker-compose.test.yaml"
       snykTestFilePath: "./docker-compose.snyk.yaml"
     appDeployConfig:
-      filepath: "./appConfig"  
+      filepath: "./appConfig"
+      filetype: "yaml"  
       variableGroups: 
         - ffc-demo-web-snd1
         - ffc-demo-web-snd2
