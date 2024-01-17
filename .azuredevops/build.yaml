@@ -61,6 +61,7 @@ extends:
         - ffc-demo-web-snd3
         - ffc-demo-web-dev1
         - ffc-demo-web-tst1
+        - ffc-demo-web-pre1
       variables:
         - ffc-demo-web-APPINSIGHTS-CONNECTIONSTRING
         - ffc-demo-web-COOKIE-PASSWORD
