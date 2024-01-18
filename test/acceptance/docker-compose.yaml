@@ -4,8 +4,12 @@ services:
     build: .
     image: wdio-cucumber
     container_name: webdriver-cuke
+    depends_on:
+      - selenium
     environment:
       TEST_ENVIRONMENT_ROOT_URL: ${TEST_ENVIRONMENT_ROOT_URL}
       CHROME_ARGS: "--headless --ignore-certificate-errors"
-      BROWSERSTACK_USERNAME: ${BROWSERSTACK_USERNAME}
-      BROWSERSTACK_ACCESS_KEY: ${BROWSERSTACK_ACCESS_KEY}
+
+  selenium:
+    image: selenium/standalone-chrome-debug
+    container_name: chrome-browser
