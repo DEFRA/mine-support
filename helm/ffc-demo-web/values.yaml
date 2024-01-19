@@ -1,3 +1,4 @@
+environment: development
 name: ffc-demo-web
 namespace: ffc-demo
 image: ffc-demo-web
