@@ -4,6 +4,9 @@ namespace: ffc-demo
 image: ffc-demo-web
 workstream: ffc-demo
 
+appInsights:
+  connectionString:
+
 labels:
   component: web
 
@@ -13,6 +16,9 @@ container:
   requestCpu: 50m
   limitMemory: 200Mi
   limitCpu: 400m
+  messageQueueHost: amq
+  claimQueueAddress: claim
+  protectiveMonitoringUrl:
 
 ingress:
   class: nginx
