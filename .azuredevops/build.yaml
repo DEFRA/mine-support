@@ -50,8 +50,6 @@ extends:
       manifestPath: "./package.json"
       imageRepoName: "ffc-demo-web"
     appTestConfig:
-      testFilePath: "./docker-compose.test.yaml"
-      snykTestFilePath: "./docker-compose.snyk.yaml"
       preDeployTest:
         testsToRun:
           - owasp
