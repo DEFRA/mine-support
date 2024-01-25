@@ -52,6 +52,9 @@ extends:
     appTestConfig:
       testFilePath: "./docker-compose.test.yaml"
       snykTestFilePath: "./docker-compose.snyk.yaml"
+      preDeployTest:
+        testsToRun:
+          - owasp
     appDeployConfig:
       filepath: "./appConfig"
       filetype: "yaml"  
