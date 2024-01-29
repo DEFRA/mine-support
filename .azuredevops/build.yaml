@@ -6,7 +6,7 @@ parameters:
   - name: deployConfigOnly
     displayName: "Deploy App Config"
     type: boolean
-    default: false    
+    default: false
 pr:
   branches:
     include:
@@ -36,7 +36,7 @@ resources:
       name: DEFRA/adp-pipeline-common
       endpoint: DEFRA
       type: github
-      ref: refs/heads/main
+      ref: refs/heads/rv/296207-predeploytest
 
 extends:
   template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
@@ -45,19 +45,14 @@ extends:
     deployFromFeature: ${{ parameters.deployFromFeature }}
     deployConfigOnly: ${{ parameters.deployConfigOnly }}
     appBuildConfig:
-      appFrameworkType: "nodejs"  
+      appFrameworkType: "nodejs"
       projectPath: "./package.json"
       manifestPath: "./package.json"
       imageRepoName: "ffc-demo-web"
-    appTestConfig:
-      preDeployTest:
-        testsToRun:
-          - owasp
-          - accessibility
     appDeployConfig:
       filepath: "./appConfig"
-      filetype: "yaml"  
-      variableGroups: 
+      filetype: "yaml"
+      variableGroups:
         - ffc-demo-web-snd1
         - ffc-demo-web-snd2
         - ffc-demo-web-snd3
