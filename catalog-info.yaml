@@ -9,7 +9,7 @@ metadata:
   annotations:
     github.com/project-slug: DEFRA/ffc-demo-web
     dev.azure.com/project: DEFRA-FFC
-    dev.azure.com/build-definition: DEFRA.ffc-demo-web
+    dev.azure.com/build-definition: ffc-demo-web
     sonarqube.org/project-key: adp-ffc-demo-web
     backstage.io/techdocs-ref: dir:.
     defra.com/techdocs-builder: local
