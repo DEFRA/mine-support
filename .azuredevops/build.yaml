@@ -54,9 +54,9 @@ extends:
       snykTestFilePath: "./docker-compose.snyk.yaml"
     appDeployConfig:
       filepath: "./appConfig"
-      filetype: "yaml"  
+      filetype: "yaml"    
       variableGroups: 
-        - ffc-demo-web-${environment}
+        - ffc-demo-web-{environment}
         # - ffc-demo-web-snd2
         # - ffc-demo-web-snd3
         # - ffc-demo-web-dev1
