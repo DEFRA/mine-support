@@ -36,7 +36,7 @@ resources:
       name: DEFRA/adp-pipeline-common
       endpoint: DEFRA
       type: github
-      ref: main
+      ref: refs/head/sm/303370-SimplifyVGNaming
 
 extends:
   template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
@@ -56,12 +56,12 @@ extends:
       filepath: "./appConfig"
       filetype: "yaml"  
       variableGroups: 
-        - ffc-demo-web-snd1
-        - ffc-demo-web-snd2
-        - ffc-demo-web-snd3
-        - ffc-demo-web-dev1
-        - ffc-demo-web-tst1
-        - ffc-demo-web-pre1
+        - ffc-demo-web-${environment}
+        # - ffc-demo-web-snd2
+        # - ffc-demo-web-snd3
+        # - ffc-demo-web-dev1
+        # - ffc-demo-web-tst1
+        # - ffc-demo-web-pre1
       variables:
         - ffc-demo-web-APPINSIGHTS-CONNECTIONSTRING
         - ffc-demo-web-COOKIE-PASSWORD
