@@ -45,7 +45,7 @@ const config = {
     ttl: process.env.COOKIE_TTL_IN_MILLIS,
     encoding: 'base64json',
     isSameSite: 'Lax',
-    isSecure: process.env.NODE_ENV === 'production',
+    isSecure: process.env.NODE_ENV !== 'development',
     isHttpOnly: true,
     clearInvalid: false,
     strictHeader: true
