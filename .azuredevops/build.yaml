@@ -36,7 +36,7 @@ resources:
       name: DEFRA/adp-pipeline-common
       endpoint: DEFRA
       type: github
-      ref: refs/head/sm/303370-SimplifyVGNaming
+      ref: refs/heads/sm/303370-SimplifyVGNaming
 
 extends:
   template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
