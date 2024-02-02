@@ -56,7 +56,9 @@ extends:
       filepath: "./appConfig"
       filetype: "yaml"    
       variableGroups: 
-        - ffc-demo-web-<environment>      
+        # - ffc-demo-web-<environment>
+        - ffc-demo-web-snd1
+        - ffc-demo-web-snd2      
       variables:
         - ffc-demo-web-APPINSIGHTS-CONNECTIONSTRING
         - ffc-demo-web-COOKIE-PASSWORD
