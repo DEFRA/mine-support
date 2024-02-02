@@ -57,6 +57,8 @@ extends:
       filetype: "yaml"    
       variableGroups: 
         - ffc-demo-web-<environment>
+        - ffc-demo-web-snd2    
+        - NodeJSAppBuild  
       variables:
         - ffc-demo-web-APPINSIGHTS-CONNECTIONSTRING
         - ffc-demo-web-COOKIE-PASSWORD
