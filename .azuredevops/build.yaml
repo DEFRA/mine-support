@@ -37,7 +37,7 @@ resources:
       endpoint: DEFRA
       type: github
       ref: main
-
+            
 extends:
   template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
   parameters:
@@ -54,14 +54,9 @@ extends:
       snykTestFilePath: "./docker-compose.snyk.yaml"
     appDeployConfig:
       filepath: "./appConfig"
-      filetype: "yaml"  
+      filetype: "yaml"    
       variableGroups: 
-        - ffc-demo-web-snd1
-        - ffc-demo-web-snd2
-        - ffc-demo-web-snd3
-        - ffc-demo-web-dev1
-        - ffc-demo-web-tst1
-        - ffc-demo-web-pre1
+        - ffc-demo-web-<environment>
       variables:
         - ffc-demo-web-APPINSIGHTS-CONNECTIONSTRING
         - ffc-demo-web-COOKIE-PASSWORD
