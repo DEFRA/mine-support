@@ -13,6 +13,7 @@ metadata:
     sonarqube.org/project-key: adp-ffc-demo-web
     backstage.io/techdocs-ref: dir:.
     defra.com/techdocs-builder: local
+    backstage.io/kubernetes-id: ffc-demo-web
   tags:
     - node
     - service-bus
