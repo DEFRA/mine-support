@@ -57,6 +57,4 @@ extends:
       variableGroups: 
         - ffc-demo-web-<environment>
       variables:
-        - ffc-demo-web-APPINSIGHTS-CONNECTIONSTRING
-        - ffc-demo-web-*-PASSWORD
-        - ffc-demo-web-REDIS-*
+        - ffc-demo-web-*
