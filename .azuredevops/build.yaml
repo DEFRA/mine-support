@@ -5,7 +5,8 @@ parameters:
     default: false
   - name: deployConfigOnly
     displayName: "Deploy App Config"
-    type: true    
+    type: boolean
+    default: true
 pr:
   branches:
     include:
