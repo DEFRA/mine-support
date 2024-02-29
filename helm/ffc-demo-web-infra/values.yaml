@@ -7,3 +7,17 @@ namespaceTopics:
   - name: claim-notify
     roleAssignments:
       - roleName: 'TopicSender'
+
+storageAccounts:
+  - name: ffcdemoadpinfst1401
+    blobContainers:  
+      - name: container-01
+        roleAssignments:
+          - roleName: 'BlobDataContributor' 
+      - name: container-02
+        roleAssignments:
+          - roleName: 'BlobDataReader'   
+    tables:  
+      - name: table01  
+        roleAssignments:
+          - roleName: 'TableDataContributor'       
