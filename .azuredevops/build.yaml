@@ -58,6 +58,6 @@ extends:
       variableGroups: 
         - ffc-demo-web-<environment>
       variables:
-        - "*"
+        - "ffc-demo-web*"
     serviceStatus: POC
 
