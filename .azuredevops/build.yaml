@@ -40,6 +40,7 @@ resources:
 extends:
   template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
   parameters:
+    programmeName: "ffc"
     serviceName: "ffc-demo-web"
     deployFromFeature: ${{ parameters.deployFromFeature }}
     deployConfigOnly: ${{ parameters.deployConfigOnly }}
@@ -56,4 +57,4 @@ extends:
       filetype: "yaml"    
       variableGroups: 
         - ffc-demo-web-<environment>
-        
+
