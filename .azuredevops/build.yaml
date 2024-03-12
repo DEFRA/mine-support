@@ -6,12 +6,11 @@ parameters:
   - name: deployConfigOnly
     displayName: "Deploy App Config"
     type: boolean
-    default: false    
+    default: false
 pr:
   branches:
     include:
       - main
-      - master
   paths:
     exclude:
       - test-output/*
@@ -36,11 +35,12 @@ resources:
       name: DEFRA/adp-pipeline-common
       endpoint: DEFRA
       type: github
-      ref: main
+      ref: refs/heads/main
             
 extends:
   template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
   parameters:
+    programmeName: "ffc"
     serviceName: "ffc-demo-web"
     deployFromFeature: ${{ parameters.deployFromFeature }}
     deployConfigOnly: ${{ parameters.deployConfigOnly }}
@@ -57,7 +57,4 @@ extends:
       filetype: "yaml"    
       variableGroups: 
         - ffc-demo-web-<environment>
-      variables:
-        - ffc-demo-web-APPINSIGHTS-CONNECTIONSTRING
-        - ffc-demo-web-COOKIE-PASSWORD
-        - ffc-demo-web-REDIS-PASSWORD
+
