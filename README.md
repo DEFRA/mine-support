@@ -5,7 +5,7 @@
 Digital service mock to claim public money in the event property subsides into
 mine shaft. This is the web front end for the application. It contains a
 simple claim submission journey where user input data is cached in Redis. On
-submission the data is pulled from Redis and passed to the message service..
+submission the data is pulled from Redis and passed to the message service.
 
 ## Prerequisites
 
