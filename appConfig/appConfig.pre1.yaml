@@ -1,7 +1,7 @@
 - key: MESSAGE_QUEUE_HOST
-  value: "DEVADPINFSB1401.servicebus.windows.net"  
+  value: "PREADPINFSB1401.servicebus.windows.net"  
 - key: REDIS_HOSTNAME
-  value: "DEVADPINFRD1401.redis.cache.windows.net"            
+  value: "PREADPINFRD1401.redis.cache.windows.net"            
 - key: GOOGLE_TAG_MANAGER_KEY
   value: "GTM-N5QK7RL"        
 - key: COOKIE_PASSWORD
@@ -14,4 +14,4 @@
   value: "{{servicename}}-APPINSIGHTS-CONNECTIONSTRING" 
   type: "keyvault"
 - key: FONT_COLOR
-  value: "red"
+  value: "red"  
