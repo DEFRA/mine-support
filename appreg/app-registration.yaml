@@ -12,9 +12,3 @@
     - "https://{{servicename}}.{{environment}}.crm.defra.gov.uk/letmelogin" 
   accessGroups: 
     - "UserEntra-{{servicename}}-{{environment}}-Backend"        
-- AppRegName: "{{servicenasdf}-"
-  IsForLoginUI: False
-  redirectUris: 
-    - "https://{{servicename}.gov.uk/letmelogin" 
-  accessGroups: 
-    - "UserEntra-{{ronment}}-Backend"        
