@@ -31,7 +31,7 @@ function getIpAddress (request) {
   const xForwardedForHeader = request.headers[headerName]
 
   return xForwardedForHeader
-    ? xForwardedForHeader.split(",")[0]
+    ? xForwardedForHeader.split(',')[0]
     : request.info.remoteAddress
 }
 

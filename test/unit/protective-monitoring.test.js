@@ -21,6 +21,7 @@ describe('send protective monitoring event', () => {
 
   beforeEach(() => {
     process.env.COOKIE_PASSWORD = 'cookie_password_cookie_password'
+    process.env.IP_FORWARD_HEADER_NAME = 'x-forwarded-for'
   })
 
   test('should send protective monitoring payload with x-forwarded-for header', async () => {
