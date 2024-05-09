@@ -1,5 +1,5 @@
 const { PublishEvent } = require('ffc-protective-monitoring')
-const config = require('../config');
+const config = require('../config')
 
 async function sendEvent (request, claim, event) {
   const protectiveMonitoring = new PublishEvent(config.protectiveMonitoringUrl)
@@ -13,9 +13,9 @@ async function sendEvent (request, claim, event) {
     pmccode: '001',
     priority: '0',
     details: {
-      message: event,
-    },
-  });
+      message: event
+    }
+  })
   console.log(`Protective monitoring event sent: ${event}`)
 }
 
