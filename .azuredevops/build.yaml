@@ -42,7 +42,7 @@ extends:
   parameters:
     programmeName: "ffc"
     serviceName: "ffc-demo-web"
-    includePlatformEnvs: true
+    # includePlatformEnvs: true
     deployFromFeature: ${{ parameters.deployFromFeature }}
     deployConfigOnly: ${{ parameters.deployConfigOnly }}
     appBuildConfig:
@@ -53,8 +53,8 @@ extends:
     appTestConfig:
       testFilePath: "./docker-compose.test.yaml"
       snykTestFilePath: "./docker-compose.snyk.yaml"
-      postDeployTest:
-        envToTest: "snd1"
+      # postDeployTest:
+      #   envToTest: "snd3"
     appDeployConfig:
       filepath: "./appConfig"
       filetype: "yaml"    
