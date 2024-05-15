@@ -3,5 +3,5 @@ const Joi = require('joi')
 module.exports = Joi.object().required().keys({
   day: Joi.number().required().min(1).max(31),
   month: Joi.number().required().min(1).max(12),
-  year: Joi.number().required()
+  year: Joi.number().required().min(1900).max(9999)
 })
