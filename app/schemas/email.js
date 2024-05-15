@@ -1,7 +1,5 @@
 const Joi = require('joi')
 
 module.exports = Joi.object({
-  email: Joi.string().email()
-  .min(3)
-  .max(30)
+  email: Joi.string().required().email({minDomainSegments: 2})
 })
