@@ -35,13 +35,14 @@ resources:
       name: DEFRA/adp-pipeline-common
       endpoint: DEFRA
       type: github
-      ref: refs/heads/main
+      ref: aa/addPostDeployTestBackIn
             
 extends:
   template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
   parameters:
     programmeName: "ffc"
     serviceName: "ffc-demo-web"
+    includePlatformEnvs: true
     deployFromFeature: ${{ parameters.deployFromFeature }}
     deployConfigOnly: ${{ parameters.deployConfigOnly }}
     appBuildConfig:
@@ -52,6 +53,8 @@ extends:
     appTestConfig:
       testFilePath: "./docker-compose.test.yaml"
       snykTestFilePath: "./docker-compose.snyk.yaml"
+      postDeployTest:
+        envToTest: "snd1"
     appDeployConfig:
       filepath: "./appConfig"
       filetype: "yaml"    
