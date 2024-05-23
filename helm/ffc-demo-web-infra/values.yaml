@@ -1,23 +1,25 @@
 namespaceQueues:
   - name: claim
     roleAssignments:
-      - roleName: 'QueueSender'
+      - roleName: "QueueSender"
 
 namespaceTopics:
   - name: claim-notify
     roleAssignments:
-      - roleName: 'TopicSender'
+      - roleName: "TopicSender"
 
 storageAccounts:
   - name: demoweb
-    blobContainers:  
+    blobContainers:
       - name: container-01
         roleAssignments:
-          - roleName: 'BlobDataContributor' 
+          - roleName: "BlobDataContributor"
       - name: container-02
         roleAssignments:
-          - roleName: 'BlobDataReader'   
-    tables:  
-      - name: table01  
+          - roleName: "BlobDataReader"
+    tables:
+      - name: table01
         roleAssignments:
-          - roleName: 'TableDataContributor'       
+          - roleName: "TableDataContributor"
+    fileShares:
+      - name: share-01
