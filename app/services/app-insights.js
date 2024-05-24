@@ -10,24 +10,23 @@ const resource = new Resource({
 const { DefaultAzureCredential } = require('@azure/identity')
 
 function setup () {
-  if (process.env.APPINSIGHTS_CONNECTIONSTRING) {    
+  if (process.env.APPINSIGHTS_CONNECTIONSTRING) {
     const options = {
       azureMonitorExporterOptions: {
-        connectionString:
-          process.env.APPINSIGHTS_CONNECTIONSTRING,
-        credential: (process.env.NODE_ENV === 'production') ? new DefaultAzureCredential() : undefined,
+      connectionString: process.env.APPINSIGHTS_CONNECTIONSTRING,
+      credential: (process.env.NODE_ENV === 'production') ? new DefaultAzureCredential() : undefined
       },
-      resource: resource,
+      resource
     }
-    useAzureMonitor(options);
+    useAzureMonitor(options)
     const instrumentations = [
       new ExpressInstrumentation()
-    ];
+    ]
     registerInstrumentations({
       tracerProvider: trace.getTracerProvider(),
       meterProvider: metrics.getMeterProvider(),
-      instrumentations: instrumentations
-    });  
+      instrumentations
+    })
     console.log('App Insights Running')
   } else {
     console.log('App Insights Not Running!')
