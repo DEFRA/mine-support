@@ -17,7 +17,7 @@ function setup () {
       azureMonitorExporterOptions: {
         connectionString:
           process.env.APPINSIGHTS_CONNECTIONSTRING,
-        credential: (process.env.NODE_ENV === 'development') ? null : new DefaultAzureCredential(),
+        credential: (process.env.NODE_ENV === 'production') ? new DefaultAzureCredential() : undefined,
       },
       resource: resource,
     }
