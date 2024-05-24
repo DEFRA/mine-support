@@ -10,10 +10,6 @@ namespaceTopics:
 
 storageAccounts:
   - name: demoweb
-    storageAccountsFileService:
-      deleteRetentionPolicy:
-        enabled: false
-        days: 15
     blobContainers:
       - name: container-01
         roleAssignments:
