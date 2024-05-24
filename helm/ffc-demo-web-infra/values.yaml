@@ -12,7 +12,7 @@ storageAccounts:
   - name: demoweb
     storageAccountsFileService:
       deleteRetentionPolicy:
-        enabled: true
+        enabled: false
         days: 15
     blobContainers:
       - name: container-01
