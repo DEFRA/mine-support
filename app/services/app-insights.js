@@ -13,8 +13,8 @@ function setup () {
   if (process.env.APPINSIGHTS_CONNECTIONSTRING) {
     const options = {
       azureMonitorExporterOptions: {
-      connectionString: process.env.APPINSIGHTS_CONNECTIONSTRING,
-      credential: (process.env.NODE_ENV === 'production') ? new DefaultAzureCredential() : undefined
+        connectionString: process.env.APPINSIGHTS_CONNECTIONSTRING,
+        credential: (process.env.NODE_ENV === 'production') ? new DefaultAzureCredential() : undefined
       },
       resource
     }
