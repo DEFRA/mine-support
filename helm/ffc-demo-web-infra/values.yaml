@@ -9,6 +9,9 @@ namespaceTopics:
       - roleName: "TopicSender"
 
 storageAccounts:
+  # storageAccountsFileService:
+  #   deleteRetentionPolicy:
+  #     enabled: false
   - name: demoweb
     blobContainers:
       - name: container-01
@@ -23,3 +26,6 @@ storageAccounts:
           - roleName: "TableDataContributor"
     fileShares:
       - name: share-01
+      - name: share-02
+        accessTier: Hot
+        shareQuota: 50
