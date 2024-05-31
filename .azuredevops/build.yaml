@@ -30,7 +30,8 @@ trigger:
       - obj/*
 
 variables:
-  - group: adp-platform-vars
+  - name: pipelineVersion
+    value: "pp/services-to-snd4"
 
 resources:
   repositories:
