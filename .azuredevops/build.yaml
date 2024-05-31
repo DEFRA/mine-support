@@ -29,7 +29,7 @@ trigger:
       - bin/*
       - obj/*
 
-variable:
+variables:
   - group: adp-platform-vars
 
 resources:
