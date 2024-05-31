@@ -29,13 +29,16 @@ trigger:
       - bin/*
       - obj/*
 
+variable:
+  - group: adp-platform-vars
+
 resources:
   repositories:
     - repository: DEFRA-ADPPipelineCommon
       name: DEFRA/adp-pipeline-common
       endpoint: DEFRA
       type: github
-      ref: pp/services-to-snd4
+      ref: $(pipelineVersion)
             
 extends:
   template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
