@@ -1,5 +1,5 @@
 - key: MESSAGE_QUEUE_HOST
-  value: "SNDADPINFS43401.servicebus.windows.net"  
+  value: "SNDADPINFSB4401.servicebus.windows.net"  
 - key: REDIS_HOSTNAME
   value: "SNDADPINFRD4401.redis.cache.windows.net"            
 - key: GOOGLE_TAG_MANAGER_KEY
