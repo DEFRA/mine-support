@@ -1,5 +1,3 @@
-version: '3.8'
-
 # This override file should be used when running tests in CI pipelines
 # to run tests against app code from the Docker image without binding
 # ports to the host machine.
