@@ -35,16 +35,16 @@ resources:
       name: DEFRA/adp-pipeline-common
       endpoint: DEFRA
       type: github
-      ref: refs/heads/main
+      ref: refs/tags/1.0.0-latest
             
 extends:
   template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
   parameters:
-    programmeName: "ffc"
+    teamName: "fcp-demo"
     serviceName: "ffc-demo-web"
     deployFromFeature: ${{ parameters.deployFromFeature }}
     deployConfigOnly: ${{ parameters.deployConfigOnly }}
-    includePlatformEnvs: true
+    includePlatformEnvs: false
     appBuildConfig:
       appFrameworkType: "nodejs"  
       projectPath: "./package.json"
@@ -53,6 +53,8 @@ extends:
     appTestConfig:
       testFilePath: "./docker-compose.test.yaml"
       snykTestFilePath: "./docker-compose.snyk.yaml"
+      postDeployTest:
+        envToTest: snd4      
     appDeployConfig:
       filepath: "./appConfig"
       filetype: "yaml"    
