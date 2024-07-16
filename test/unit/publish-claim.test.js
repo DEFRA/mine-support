@@ -41,6 +41,9 @@ describe('publish claim', () => {
     request = {
       headers: {
         'x-forwarded-for': '127.0.0.1'
+      },
+      info: {
+        remoteAddress: '127.0.0.1'
       }
     }
   })

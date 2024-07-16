@@ -6,12 +6,11 @@ parameters:
   - name: deployConfigOnly
     displayName: "Deploy App Config"
     type: boolean
-    default: false    
+    default: false
 pr:
   branches:
     include:
       - main
-      - master
   paths:
     exclude:
       - test-output/*
@@ -36,14 +35,16 @@ resources:
       name: DEFRA/adp-pipeline-common
       endpoint: DEFRA
       type: github
-      ref: main
+      ref: refs/tags/1.0.0-latest
             
 extends:
   template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
   parameters:
+    teamName: "fcp-demo"
     serviceName: "ffc-demo-web"
     deployFromFeature: ${{ parameters.deployFromFeature }}
     deployConfigOnly: ${{ parameters.deployConfigOnly }}
+    includePlatformEnvs: false
     appBuildConfig:
       appFrameworkType: "nodejs"  
       projectPath: "./package.json"
@@ -52,12 +53,11 @@ extends:
     appTestConfig:
       testFilePath: "./docker-compose.test.yaml"
       snykTestFilePath: "./docker-compose.snyk.yaml"
+      postDeployTest:
+        envToTest: snd4      
     appDeployConfig:
       filepath: "./appConfig"
       filetype: "yaml"    
       variableGroups: 
         - ffc-demo-web-<environment>
-      variables:
-        - ffc-demo-web-APPINSIGHTS-CONNECTIONSTRING
-        - ffc-demo-web-COOKIE-PASSWORD
-        - ffc-demo-web-REDIS-PASSWORD
+

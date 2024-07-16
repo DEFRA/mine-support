@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   wdio-cucumber:
     command: npm run test:debug

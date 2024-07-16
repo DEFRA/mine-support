@@ -20,9 +20,19 @@ async function sendEvent (request, claim, event) {
 }
 
 function getIpAddress (request) {
-  // Identifying the originating IP address of a client connecting to a web server through an HTTP proxy or a load balancer
-  const xForwardedForHeader = request.headers['x-forwarded-for']
-  return xForwardedForHeader ? xForwardedForHeader.split(',')[0] : request.info.remoteAddress
+  const headerName = process.env.IP_FORWARD_HEADER_NAME
+
+  // Checks if environment variable is defined for header name otherwise return the direct IP address
+
+  if (!headerName) {
+    return request.info.remoteAddress
+  }
+
+  const xForwardedForHeader = request.headers[headerName]
+
+  return xForwardedForHeader
+    ? xForwardedForHeader.split(',')[0]
+    : request.info.remoteAddress
 }
 
 function createEventDate () {
