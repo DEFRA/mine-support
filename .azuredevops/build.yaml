@@ -55,7 +55,11 @@ extends:
       testFilePath: "./docker-compose.test.yaml"
       snykTestFilePath: "./docker-compose.snyk.yaml"
       postDeployTest:
-        envToTest: snd4      
+        envToTest: snd4
+        testEnvs:
+          acceptanceTests: 
+            - env: snd4
+              tags: '@insanity'
     appDeployConfig:
       filepath: "./appConfig"
       filetype: "yaml"    
