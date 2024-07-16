@@ -8,6 +8,7 @@ services:
       - selenium
     environment:
       TEST_ENVIRONMENT_ROOT_URL: ${TEST_ENVIRONMENT_ROOT_URL}
+      TEST_TAGS: ${TEST_TAGS}
       CHROME_ARGS: "--headless --ignore-certificate-errors"
 
   selenium:
