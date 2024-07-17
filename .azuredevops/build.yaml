@@ -35,8 +35,7 @@ resources:
       name: DEFRA/adp-pipeline-common
       endpoint: DEFRA
       type: github
-      #ref: refs/tags/1.0.0-latest
-      ref: rv/413850
+      ref: refs/tags/1.0.0-latest      
             
 extends:
   template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
@@ -59,7 +58,7 @@ extends:
         testEnvs:
           acceptanceTests: 
             - env: snd4
-              tags: '@insanity'
+              tags: '@demotag'
     appDeployConfig:
       filepath: "./appConfig"
       filetype: "yaml"    
