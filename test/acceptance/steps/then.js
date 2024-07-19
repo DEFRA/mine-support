@@ -31,7 +31,7 @@ import waitForVisible from '../support/action/waitForDisplayed'
 import checkIfElementExists from '../support/lib/checkIfElementExists'
 import checkURLContains from '../support/check/checkURLContains'
 
-const { Then } = require('cucumber')
+import { Then } from '@wdio/cucumber-framework';
 
 Then(
   /^I expect that the title is( not)* "([^"]*)?"$/,
