@@ -4,16 +4,17 @@ services:
       MAX_INSTANCES: 1
       CHROME_ARGS: "--headless --ignore-certificate-errors --verbose"
     volumes:
-      - ./features:/home/node/features
-      - ./pageobjects:/home/node/pageobjects
-      - ./scratch:/home/node/scratch
-      - ./steps:/home/node/steps
-      - ./support:/home/node/support
-      - ./babel.config.js:/home/node/babel.config.js
-      - ./wdio.conf.mjs:/home/node/wdio.conf.mjs
-      - ./package.json:/home/node/package.json
-      - ../../test-output/html-reports:/home/node/html-reports
-      - ../../test-output/logs:/home/node/logs
+      - ../:/home/node
+      # - ./features:/home/node/features
+      # - ./pageobjects:/home/node/pageobjects
+      # - ./scratch:/home/node/scratch
+      # - ./steps:/home/node/steps
+      # - ./support:/home/node/support
+      # - ./babel.config.js:/home/node/babel.config.js
+      # - ./wdio.conf.mjs:/home/node/wdio.conf.mjs
+      # - ./package.json:/home/node/package.json
+      # - ../../test-output/html-reports:/home/node/html-reports
+      # - ../../test-output/logs:/home/node/logs
     ports:
       - "9228:9229"
 

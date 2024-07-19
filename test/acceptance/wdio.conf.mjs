@@ -3,7 +3,7 @@
 import allureReporter from '@wdio/allure-reporter'
 import cucumberJson from 'wdio-cucumberjs-json-reporter';
 import { ReportAggregator, HtmlReporter } from 'wdio-html-nice-reporter';
-import commands from "@rpii/wdio-commands";
+// import commands from "@rpii/wdio-commands";
 import moment from 'moment';
 
 import logger from '@wdio/logger';
@@ -179,13 +179,13 @@ export const config = {
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
   reporters: ['spec',
-    ['allure', {
-      outputDir: './html-reports/allure-results',
-      disableWebdriverStepsReporting: true,
-      disableWebdriverScreenshotsReporting: false,
-      useCucumberStepReporter: true,
-      addConsoleLogs: true
-    }],
+    // ['allure', {
+    //   outputDir: './html-reports/allure-results',
+    //   disableWebdriverStepsReporting: true,
+    //   disableWebdriverScreenshotsReporting: false,
+    //   useCucumberStepReporter: true,
+    //   addConsoleLogs: true
+    // }],
     ["html-nice", {
       debug: true,
       outputDir: './html-reports',
@@ -196,11 +196,11 @@ export const config = {
       //to turn on screenshots after every test
       useOnAfterCommandForScreenshot: true,
       linkScreenshots: true
-    }],
-    ['cucumberjs-json', {
-      jsonFolder: './html-reports/json',
-      language: 'en',
     }]
+    // ['cucumberjs-json', {
+    //   jsonFolder: './html-reports/json',
+    //   language: 'en',
+    // }]
   ],
 
   // If you are using Cucumber you need to specify the location of your step definitions.
@@ -253,7 +253,7 @@ export const config = {
         linkScreenshots: true
       });
 
-    reportAggregator.clean();
+    //reportAggregator.clean();
 
     global.reportAggregator = reportAggregator;
   },
@@ -297,7 +297,7 @@ export const config = {
    */
   before: function (capabilities, specs) {
     //@ts-ignore
-    commands.addCommands(driver);
+    // commands.addCommands(driver);
   },
   /**
    * Runs before a WebdriverIO command gets executed.
@@ -455,9 +455,9 @@ export const config = {
  */
   onComplete: async function (exitCode, config, capabilities, results) {
     // await global.reportAggregator.createReport();
-    (async () => {
-      await global.reportAggregator.createReport();
-    })();
+    // (async () => {
+    //   await global.reportAggregator.createReport();
+    // })();
   },
 
 

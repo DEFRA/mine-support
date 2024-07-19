@@ -18,3 +18,5 @@ test/performance/test-output/
 # Generated views
 _layout.njk
 _cookie-banner.njk
+**/logs/
+**/htmlreports/
