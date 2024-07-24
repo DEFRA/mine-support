@@ -18,7 +18,7 @@ services:
       - -c
       - |
         sleep 10
-        /scripts/wait ${TEST_ENVIRONMENT_ROOT_URL:-ffc-demo-web:3000} -- axe --dir=test-output -s axe.json --report=test-output --format=junit --exclude ".govuk-skip-link,.govuk-breadcrumbs"  --chrome-options="no-sandbox,disable-setuid-sandbox,disable-dev-shm-usage" --chromedriver-path=/usr/bin/chromedriver --exit  ${TEST_ENVIRONMENT_ROOT_URL:-ffc-demo-web:3000}, ffc-demo-web:3000/claim/name,  ${TEST_ENVIRONMENT_ROOT_URL:-ffc-demo-web:3000}/claim/property,  ${TEST_ENVIRONMENT_ROOT_URL:-ffc-demo-web:3000}/claim/accessible,  ${TEST_ENVIRONMENT_ROOT_URL:-ffc-demo-web:3000}/claim/mine-type, ${TEST_ENVIRONMENT_ROOT_URL:-ffc-demo-web:3000}/claim/date-of-subsidence, ${TEST_ENVIRONMENT_ROOT_URL:-ffc-demo-web:3000}/claim/email, ${TEST_ENVIRONMENT_ROOT_URL:-ffc-demo-web:3000}/claim/confirmation
+        /scripts/wait ${TEST_ENVIRONMENT_ROOT_URL:-ffc-demo-web:3000} -- axe --dir=test-output -s axe.json --report=test-output --format=junit --exclude ".govuk-skip-link,.govuk-breadcrumbs"  --chrome-options="no-sandbox,disable-setuid-sandbox,disable-dev-shm-usage" --chromedriver-path=/usr/bin/chromedriver --exit  ${TEST_ENVIRONMENT_ROOT_URL:-ffc-demo-web:3000}, ${TEST_ENVIRONMENT_ROOT_URL:-ffc-demo-web:3000}/claim/name,  ${TEST_ENVIRONMENT_ROOT_URL:-ffc-demo-web:3000}/claim/property,  ${TEST_ENVIRONMENT_ROOT_URL:-ffc-demo-web:3000}/claim/accessible,  ${TEST_ENVIRONMENT_ROOT_URL:-ffc-demo-web:3000}/claim/mine-type, ${TEST_ENVIRONMENT_ROOT_URL:-ffc-demo-web:3000}/claim/date-of-subsidence, ${TEST_ENVIRONMENT_ROOT_URL:-ffc-demo-web:3000}/claim/email, ${TEST_ENVIRONMENT_ROOT_URL:-ffc-demo-web:3000}/claim/confirmation
     volumes:
       - ./test-output/axe:/home/node/test-output
       - ./scripts:/scripts
