@@ -54,6 +54,8 @@ extends:
     appTestConfig:
       testFilePath: "./docker-compose.test.yaml"
       snykTestFilePath: "./docker-compose.snyk.yaml"
+      preDeployTest:
+        testsToRun: "owasp;accessibility;performance;service-acceptance;acceptance;integration"
       postDeployTest:
         envToTest: snd4
         testEnvs:
