@@ -35,7 +35,7 @@ resources:
       name: DEFRA/adp-pipeline-common
       endpoint: DEFRA
       type: github
-      #ref: refs/tags/1.0.0-latest      
+      #ref: refs/tags/1.0.0-latest
       ref: rv/416513
             
 extends:
@@ -54,11 +54,9 @@ extends:
     appTestConfig:
       testFilePath: "./docker-compose.test.yaml"
       snykTestFilePath: "./docker-compose.snyk.yaml"
-      preDeployTest:
-        testsToRun: "integration;owasp;accessibility"
       postDeployTest:
         envToTest: snd4
-        testsToRun: 'integration;owasp;accessibility'
+        testsToRun: 'owasp;accessibility;performance;service-acceptance;acceptance;integration'
         testEnvs:
           acceptanceTests: 
             - env: snd4
