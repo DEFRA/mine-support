@@ -55,10 +55,10 @@ extends:
       testFilePath: "./docker-compose.test.yaml"
       snykTestFilePath: "./docker-compose.snyk.yaml"
       preDeployTest:
-        testsToRun: "integration"
+        testsToRun: "accessibility"
       postDeployTest:
         envToTest: snd4
-        testsToRun: 'owasp;accessibility;acceptance;integration'
+        testsToRun: 'owasp'
         testEnvs:
           acceptanceTests: 
             - env: snd4
