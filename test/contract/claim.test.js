@@ -8,9 +8,9 @@ describe('Pact Verification', () => {
       name: 'Joe Bloggs',
       propertyType: 'business',
       accessible: false,
-      dateOfSubsidence: '2019-07-26T09:54:19.622Z',
+      dateOfSubsidence: '2015-08-06T16:53:10.123+01:00',
       mineType: ['gold'],
-      email: 'joe.bloggs@defra.gov.uk'
+      email: 'hello@pact.io'
     }
 
     const provider = new MessageProviderPact({
