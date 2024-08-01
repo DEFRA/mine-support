@@ -10,14 +10,10 @@ namespaceTopics:
 
 storageAccounts:
   - name: demoweb
+    roleAssignments:
+      - roleName: 'DataReader'
     blobContainers:  
       - name: container-01
-        roleAssignments:
-          - roleName: 'BlobDataContributor' 
-      - name: container-02
-        roleAssignments:
-          - roleName: 'BlobDataReader'   
+      - name: container-02  
     tables:  
-      - name: table01  
-        roleAssignments:
-          - roleName: 'TableDataContributor'       
+      - name: table01      
