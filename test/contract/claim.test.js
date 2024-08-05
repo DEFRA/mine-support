@@ -13,15 +13,23 @@ describe('Pact Verification', () => {
       email: 'hello@pact.io'
     }
 
+    const url = process.env.PACT_BROKER_URL
+    const username = process.env.PACT_BROKER_USERNAME
+    const password = process.env.PACT_BROKER_PASSWORD
+
+    expect(url).toBeDefined()
+    expect(username).toBeDefined()
+    expect(password).toBeDefined()
+
     const provider = new MessageProviderPact({
       messageProviders: {
         'a request for new claim': () => createMessage(claim).body
       },
       provider: 'ffc-demo-web',
       consumerVersionTags: ['main', 'dev', 'test', 'preprod', 'prod'],
-      pactBrokerUrl: process.env.PACT_BROKER_URL,
-      pactBrokerUsername: process.env.PACT_BROKER_USERNAME,
-      pactBrokerPassword: process.env.PACT_BROKER_PASSWORD
+      pactBrokerUrl: url,
+      pactBrokerUsername: username,
+      pactBrokerPassword: password
     })
 
     return provider.verify()
