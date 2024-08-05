@@ -13,13 +13,13 @@ describe('Pact Verification', () => {
       email: 'hello@pact.io'
     }
 
-    const url = process.env.PACT_BROKER_URL;
-    const username = process.env.PACT_BROKER_USERNAME;
-    const password = process.env.PACT_BROKER_PASSWORD;
+    const url = process.env.PACT_BROKER_URL
+    const username = process.env.PACT_BROKER_USERNAME
+    const password = process.env.PACT_BROKER_PASSWORD
 
-    expect(url).toBeDefined();
-    expect(username).toBeDefined();
-    expect(password).toBeDefined();
+    expect(url).toBeDefined()
+    expect(username).toBeDefined()
+    expect(password).toBeDefined()
 
     const provider = new MessageProviderPact({
       messageProviders: {
