@@ -45,7 +45,7 @@ extends:
     deployFromFeature: ${{ parameters.deployFromFeature }}
     deployConfigOnly: ${{ parameters.deployConfigOnly }}
     includePlatformEnvs: false
-    includePocEnv: true
+    includePocEnv: false
     appBuildConfig:
       appFrameworkType: "nodejs"  
       projectPath: "./package.json"
