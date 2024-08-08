@@ -35,7 +35,7 @@ resources:
       name: DEFRA/adp-pipeline-common
       endpoint: DEFRA
       type: github
-      ref: pp/include-poc-env
+      ref: refs/tags/1.0.0-latest
             
 extends:
   template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
@@ -44,8 +44,8 @@ extends:
     serviceName: "ffc-demo-web"
     deployFromFeature: ${{ parameters.deployFromFeature }}
     deployConfigOnly: ${{ parameters.deployConfigOnly }}
-    includePlatformEnvs: true
-    #includePocEnv: true
+    includePlatformEnvs: false
+    includePocEnv: true
     appBuildConfig:
       appFrameworkType: "nodejs"  
       projectPath: "./package.json"
