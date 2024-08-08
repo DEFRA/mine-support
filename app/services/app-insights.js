@@ -1,5 +1,4 @@
 const appInsights = require('applicationinsights')
-const { func } = require('joi')
 
 function setup () {
   if (process.env.APPINSIGHTS_CONNECTIONSTRING) {
