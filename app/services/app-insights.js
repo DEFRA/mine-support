@@ -16,15 +16,15 @@ function setup () {
 }
 
 function trackEvent (name, properties) {
-  appInsights.defaultClient.trackEvent({ name, properties })
+  console.log('App Insights Event:', name, properties)
 }
 
 function trackException (error) {
-  appInsights.defaultClient.trackException({ error })
+  console.log('App Insights Exception:', error)
 }
 
 function trackRequest (request) {
-  appInsights.defaultClient.trackRequest(request)
+  console.log('App Insights Request:', request)
 }
 
 module.exports = { setup }
