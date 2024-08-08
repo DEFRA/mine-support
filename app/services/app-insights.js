@@ -12,4 +12,32 @@ function setup () {
   }
 }
 
+function trackEvent (name, properties) {
+  appInsights.defaultClient.trackEvent({ name, properties })
+}
+
+function trackException (error) {
+  appInsights.defaultClient.trackException({ error })
+}
+
+function trackRequest (request) {
+  appInsights.defaultClient.trackRequest(request)
+}
+
+function trackTrace (message) {
+  appInsights.defaultClient.trackTrace({ message })
+}
+
+function trackMetric (name, value) {
+  appInsights.defaultClient.trackMetric({ name, value })
+}
+
+function trackDependency (dependency) {
+  appInsights.defaultClient.trackDependency(dependency)
+}
+
+function flush () {
+  appInsights.defaultClient.flush()
+}
+
 module.exports = { setup }
