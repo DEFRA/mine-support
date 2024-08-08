@@ -7,12 +7,16 @@ function setup () {
     const cloudRoleTag = appInsights.defaultClient.context.keys.cloudRole
     const appName = process.env.APPINSIGHTS_CLOUDROLE
     appInsights.defaultClient.context.tags[cloudRoleTag] = appName
-    trackEvent('AppInsights', { status: 'Running' })
-    trackException(new Error('AppInsights Running'))
-    trackRequest({ name: 'AppInsights', duration: 100, resultCode: 200, success: true })
   } else {
     console.log('App Insights Not Running!')
   }
+
+  if(process.env.APPINSIGHTS_INSTRUMENTATIONKEY) {
+    trackEvent('AppInsights', { status: 'Running' })
+    trackException(new Error('AppInsights Running'))
+    trackRequest({ name: 'AppInsights', duration: 100, resultCode: 200, success: true })
+  }
+
 }
 
 function trackEvent (name, properties) {
