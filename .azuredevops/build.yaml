@@ -58,7 +58,7 @@ extends:
         testEnvs:
           acceptanceTests: 
             - env: snd4
-              tags: '@demotag'
+              tags: '@demotag or @sanity'
     appDeployConfig:
       filepath: "./appConfig"
       filetype: "yaml"    

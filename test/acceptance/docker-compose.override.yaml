@@ -5,25 +5,15 @@ services:
       CHROME_ARGS: "--headless --ignore-certificate-errors --verbose"
     volumes:
       - ../:/home/node
-      # - ./features:/home/node/features
-      # - ./pageobjects:/home/node/pageobjects
-      # - ./scratch:/home/node/scratch
-      # - ./steps:/home/node/steps
-      # - ./support:/home/node/support
-      # - ./babel.config.js:/home/node/babel.config.js
-      # - ./wdio.conf.mjs:/home/node/wdio.conf.mjs
-      # - ./package.json:/home/node/package.json
-      # - ../../test-output/html-reports:/home/node/html-reports
-      # - ../../test-output/logs:/home/node/logs
     ports:
       - "9228:9229"
 
-  chrome:
-    ports:
-      - "5900:5900"
+  # chrome:
+  #   ports:
+  #     - "5900:5900"
 
-  selenium-hub:
-    ports:
-      - "4442:4442"
-      - "4443:4443"
-      - "4444:4444"
+  # selenium-hub:
+  #   ports:
+  #     - "4442:4442"
+  #     - "4443:4443"
+  #     - "4444:4444"

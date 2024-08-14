@@ -26,6 +26,7 @@
     "@rpii/wdio-commands": "^8.0.2",
     "@testing-library/webdriverio": "^3.2.1",
     "@wdio/allure-reporter": "^8.39.0",
+    "@wdio/browserstack-service": "^8.39.1",
     "@wdio/cli": "^8.39.1",
     "@wdio/cucumber-framework": "^8.39.0",
     "@wdio/local-runner": "^8.39.1",

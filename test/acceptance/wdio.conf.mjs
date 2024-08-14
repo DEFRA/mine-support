@@ -2,8 +2,8 @@
 
 import allureReporter from '@wdio/allure-reporter'
 import cucumberJson from 'wdio-cucumberjs-json-reporter';
-import { ReportAggregator, HtmlReporter } from 'wdio-html-nice-reporter';
-// import commands from "@rpii/wdio-commands";
+import { ReportAggregator } from 'wdio-html-nice-reporter';
+import commands from "@rpii/wdio-commands";
 import moment from 'moment';
 
 import logger from '@wdio/logger';
@@ -92,13 +92,13 @@ export const config = {
         args: chromeArgs
       }
     },
-    {
-      maxInstances,
-      browserName: "firefox",
-      "moz:firefoxOptions": {
-        args: firefoxArgs
-      }
-    }
+    // {
+    //   maxInstances,
+    //   browserName: "firefox",
+    //   "moz:firefoxOptions": {
+    //     args: firefoxArgs
+    //   }
+    // }
   ],
 
   //
@@ -130,7 +130,7 @@ export const config = {
   // baseUrl: "http://localhost:3000",
   //host: 'selenium-hub',
   hostname: process.env.HOST_NAME || "localhost",
-  port: 4444,
+  //port: 4444,
 
   bail: 0,
   //
@@ -141,7 +141,7 @@ export const config = {
   baseUrl: envRoot + '',
   //
   // Default timeout for all waitFor* commands.
-  waitforTimeout: 10000,
+  waitforTimeout: parseInt(process.env.WAIT_FOR_TIMEOUT ? process.env.WAIT_FOR_TIMEOUT: 10000),
   //
   // Default timeout in milliseconds for request
   // if browser driver or grid doesn't send response
@@ -154,8 +154,18 @@ export const config = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-  //services: ['docker'],
-  services: [],
+  user: process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
+  key: process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY',
+  services: [
+    ['browserstack', {
+      testObservability: true,
+      testObservabilityOptions: {
+        projectName: process.env.BROWSERSTACK_PROJECT_NAME,
+        buildName: "FFC Demo Web regression"
+      },
+      browserstackLocal: true
+    }]
+  ],
 
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber
@@ -186,6 +196,12 @@ export const config = {
     //   useCucumberStepReporter: true,
     //   addConsoleLogs: true
     // }],
+    [video, {
+      saveAllVideos: true,       // If true, also saves videos for successful test cases
+      videoSlowdownMultiplier: 3, // Higher to get slower videos, lower for faster videos [Value 1-100]
+      videoRenderTimeout: 5,      // Max seconds to wait for a video to finish rendering\
+      outputDir: './html-reports/screenshots',
+    }],
     ["html-nice", {
       debug: true,
       outputDir: './html-reports',
@@ -193,6 +209,7 @@ export const config = {
       reportTitle: 'Feature Test Report',
       //to show the report in a browser when done
       showInBrowser: false,
+      collapseTests: false,
       //to turn on screenshots after every test
       useOnAfterCommandForScreenshot: true,
       linkScreenshots: true
@@ -236,24 +253,24 @@ export const config = {
    */
   onPrepare: function (config, capabilities) {
     log.info(`Running tests against ${envRoot}\n`)
-    const timestamp = moment().format('DDMMYYYY_HHmm');
+    // const timestamp = moment().format('DDMMYYYY_HHmm');
 
     let reportAggregator = new ReportAggregator(
       {
-        outputDir: './html-reports',
+        outputDir: './html-reports/nice-report/',
         // filename: 'master-report.html',
-        filename: 'Test_Automation_Report_' + timestamp + '.html',
-        reportTitle: 'Master Report',
-        browserName: 'chrome',
-        //browserName: capabilities.browserName,
+        filename: process.env.TEST_BROWSER + '-master-report.html',
+        reportTitle: 'FFC-Demo-Web Acceptance Tests',
+        browserName: process.env.TEST_BROWSER ? process.env.TEST_BROWSER : 'unspecified',
         //to show the report in a browser when done
         showInBrowser: true,
+        collapseTests: true,
         //to turn on screenshots after every test
         useOnAfterCommandForScreenshot: true,
         linkScreenshots: true
       });
 
-    //reportAggregator.clean();
+    reportAggregator.clean();
 
     global.reportAggregator = reportAggregator;
   },
@@ -297,7 +314,7 @@ export const config = {
    */
   before: function (capabilities, specs) {
     //@ts-ignore
-    // commands.addCommands(driver);
+    commands.addCommands(driver);
   },
   /**
    * Runs before a WebdriverIO command gets executed.
@@ -316,7 +333,7 @@ export const config = {
   beforeFeature: async function (uri, feature) {
 
     // allureReporter.addFeature(feature.name);
-    allureReporter.addStep(`Starting Feature : ${feature.name}`);
+    // allureReporter.addStep(`Starting Feature : ${feature.name}`);
 
     await browser.maximizeWindow();
   },
@@ -356,7 +373,7 @@ export const config = {
     const moment = require('moment')
     const screenshotFileName = context.uri.split('.feature')[0].split('/').slice(-1)[0]
     const timestamp = moment().format('YYYYMMDD-HHmmss.SSS')
-    const filepath = path.join('./html-reports/screenshots/', screenshotFileName + '-' + timestamp + '.png')
+    const filepath = path.join('./html-reports', 'screenshots', screenshotFileName + '-' + timestamp + '.png')
 
     cucumberJson.attach(await browser.takeScreenshot(), 'image/png');
 
@@ -444,7 +461,6 @@ export const config = {
   // afterAssertion: function(params) {
   // }
 
-
   /**
  * Gets executed after all workers got shut down and the process is about to exit. An error
  * thrown in the onComplete hook will result in the test run failing.
@@ -454,12 +470,10 @@ export const config = {
  * @param {<Object>} results object containing test results
  */
   onComplete: async function (exitCode, config, capabilities, results) {
-    // await global.reportAggregator.createReport();
-    // (async () => {
-    //   await global.reportAggregator.createReport();
-    // })();
+    (async () => {
+      await global.reportAggregator.createReport();
+    })();
   },
-
 
   /**
  * Gets executed just before initialising the webdriver session and test framework. It allows you
