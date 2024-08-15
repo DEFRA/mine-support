@@ -35,7 +35,8 @@ resources:
       name: DEFRA/adp-pipeline-common
       endpoint: DEFRA
       type: github
-      ref: refs/tags/1.0.0-latest
+      #ref: refs/tags/1.0.0-latest
+      ref: rv/241041-contracttest
             
 extends:
   template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
@@ -55,7 +56,7 @@ extends:
       snykTestFilePath: "./docker-compose.snyk.yaml"
       postDeployTest:
         envToTest: snd4
-        testsToRun: 'acceptance,integration'
+        testsToRun: 'contract'
         testEnvs:
           acceptanceTests: 
             - env: snd4
