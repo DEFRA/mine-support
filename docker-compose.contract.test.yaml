@@ -1,0 +1,21 @@
+# This override file should be used when running tests in CI pipelines
+# to run tests against app code from the Docker image without binding
+# ports to the host machine.
+
+services:
+  ffc-demo-web:
+    build:
+      target: development
+    image: ffc-demo-web-development
+    pull_policy: build
+    command: npm run test:contract
+    environment:
+      NODE_ENV: test
+      PACT_BROKER_URL: ${PACT_BROKER_URL}
+      PACT_BROKER_USERNAME: ${PACT_BROKER_USERNAME}
+      PACT_BROKER_PASSWORD: ${PACT_BROKER_PASSWORD}
+    volumes:
+      - ./test/asb-helper.js:/home/node/test/asb-helper.js
+      - ./package.json:/home/node/package.json
+      - ./test-output:/home/node/test-output
+      - ./scripts:/home/node/scripts
