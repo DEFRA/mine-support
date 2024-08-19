@@ -4,6 +4,7 @@ services:
       context: .
       target: production
     image: ffc-demo-web
+    pull_policy: build
     container_name: ffc-demo-web
     environment:
       APPINSIGHTS_CLOUDROLE: ffc-demo-web-local
