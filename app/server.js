@@ -11,6 +11,13 @@ async function createServer () {
         options: {
           abortEarly: false
         }
+      },
+      security: {
+        xframe: 'sameorigin',
+        hsts: false,
+        noOpen: false,
+        noSniff: false,
+        xss: false
       }
     },
     router: {
