@@ -13,7 +13,9 @@ storageAccounts:
     roleAssignments:
       - roleName: 'DataReader'
     blobContainers:  
-      - name: container-01
+      - name: container-01        
       - name: container-02  
     tables:  
       - name: table01      
+        roleAssignments:
+          - roleName: 'DataReader'
