@@ -14,7 +14,7 @@ services:
       PACT_BROKER_URL: ${PACT_BROKER_URL}
       PACT_BROKER_USERNAME: ${PACT_BROKER_USERNAME}
       PACT_BROKER_PASSWORD: ${PACT_BROKER_PASSWORD}
-      MY_ENV_VAR: ${ffc-demo-web-TEST-VAR}
+      MY_ENV_VAR: ${MY_ENV_VAR}
     volumes:
       - ./test/asb-helper.js:/home/node/test/asb-helper.js
       - ./package.json:/home/node/package.json
