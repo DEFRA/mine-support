@@ -66,3 +66,4 @@ extends:
       filetype: "yaml"
       variableGroups:
         - ffc-demo-web-<environment>
+
