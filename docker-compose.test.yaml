@@ -14,7 +14,7 @@ services:
       PACT_BROKER_URL: ${PACT_BROKER_URL}
       PACT_BROKER_USERNAME: ${PACT_BROKER_USERNAME}
       PACT_BROKER_PASSWORD: ${PACT_BROKER_PASSWORD}
-      ffc-demo-web-TEST-VAR: ${ffc-demo-web-TEST-VAR}
+      ffc_demo_web_TEST_VAR: ${ffc-demo-web-TEST-VAR}
     volumes:
       - ./test/integration:/home/node/test/integration
       - ./test/unit:/home/node/test/unit
