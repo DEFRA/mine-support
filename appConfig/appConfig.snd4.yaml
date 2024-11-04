@@ -14,4 +14,6 @@
   value: "{{servicename}}-APPINSIGHTS-CONNECTIONSTRING" 
   type: "keyvault"
 - key: FONT_COLOR
-  value: "red"  
+  value: "red"
+- key: NEW_VALUE_1
+  value: tbc  
